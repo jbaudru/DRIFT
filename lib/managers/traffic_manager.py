@@ -135,11 +135,31 @@ class TrafficManager:
         )
         total_edges = len(self.edge_capacities)
         
+        # Count agent types for moving agents on roads
+        agent_type_counts = {}
+        for agents in self.edge_agents.values():
+            for agent in agents:
+                if agent.state == 'moving':  # Only count moving agents
+                    agent_type = self._get_agent_type(agent)
+                    agent_type_counts[agent_type] = agent_type_counts.get(agent_type, 0) + 1
+        
         return {
             'total_agents_on_roads': total_moving_agents,
             'total_network_capacity': total_capacity,
             'network_utilization': total_moving_agents / total_capacity if total_capacity > 0 else 0,
             'congested_edges': congested_edges,
             'total_edges': total_edges,
-            'congestion_ratio': congested_edges / total_edges if total_edges > 0 else 0
+            'congestion_ratio': congested_edges / total_edges if total_edges > 0 else 0,
+            'active_agent_types': agent_type_counts
         }
+    
+    def _get_agent_type(self, agent):
+        """Extract agent type from an agent object"""
+        # Try different possible attribute names for agent type
+        for attr_name in ['agent_type', 'type', 'vehicle_type', 'class_type', 'category']:
+            if hasattr(agent, attr_name):
+                attr_value = getattr(agent, attr_name)
+                return str(attr_value)
+        
+        # If no specific type attribute found, use class name
+        return agent.__class__.__name__

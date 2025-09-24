@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QFileDialog
 from matplotlib.figure import Figure
+from matplotlib import ticker
 from collections import defaultdict, deque
 import datetime
 import os
@@ -40,7 +41,6 @@ class StatisticsManager:
         axis.set_xlabel('Time (hours)', fontsize=8)
         
         # Format tick labels with adaptive precision based on time range
-        import matplotlib.ticker as ticker
         
         # Choose tick interval based on time range for better granularity
         if time_range <= STATISTICS.TIME_RANGE_THRESHOLD_30MIN:
@@ -91,20 +91,24 @@ class StatisticsManager:
         avg_speed, avg_distance, avg_duration, avg_nodes_per_trip, total_trip_count = self._calculate_trip_statistics_since_last_update()
         
         # Get current active agent type distribution from status_info
-        # Convert from percentages to actual counts based on moving_agents count
-        active_agent_type_percentages = status_info.get('active_agent_types', {})
+        # This data should now come directly from the traffic manager's network statistics
+        active_agent_type_data = status_info.get('active_agent_types', {})
         moving_agents_count = status_info['moving_agents']
         
-        # If no agent type data is available, create a fallback
-        if not active_agent_type_percentages and moving_agents_count > 0:
-            # Create a default "unknown" agent type with all agents
-            active_agent_type_percentages = {"unknown": 100.0}
+        # Debug: Log what we receive for agent types (only occasionally to avoid spam)
+        if len(self.stats_history['time']) % 20 == 0:  # Log every 20th update
+            self.main_window.add_log_message(f"Debug: Received agent types data: {active_agent_type_data}")
         
-        # Convert percentages to actual counts
+        # Use the agent type data directly from traffic manager (it's already in count format)
         active_agent_types = {}
-        for agent_type, percentage in active_agent_type_percentages.items():
-            actual_count = int((percentage / 100.0) * moving_agents_count)
-            active_agent_types[agent_type] = actual_count
+        
+        if active_agent_type_data and isinstance(active_agent_type_data, dict):
+            # The data from traffic manager should already be in count format for moving agents
+            active_agent_types = active_agent_type_data.copy()
+        else:
+            # Fallback: create unknown type only if we have moving agents but no type data
+            if moving_agents_count > 0:
+                active_agent_types = {"unknown": moving_agents_count}
         
         self.stats_history['avg_speed'].append(avg_speed)
         self.stats_history['avg_trip_distance'].append(avg_distance)
@@ -159,12 +163,12 @@ class StatisticsManager:
         try:
             times = list(self.stats_history['time'])
             
-            if len(times) < 2:  # Need at least 2 points to plot
+            if len(times) < 1:  # Need at least 1 point to plot
                 return
             
             # Plot 1: Moving agents vs time
             self.main_window.stats_axes[0].clear()
-            self.main_window.stats_axes[0].plot(times, list(self.stats_history['moving_agents']), 'b-', linewidth=1.5)
+            self.main_window.stats_axes[0].plot(times, list(self.stats_history['moving_agents']), 'b-', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[0].set_title('Moving Agents vs Time', fontsize=10)
             self.main_window.stats_axes[0].set_ylabel('Number of Moving Agents', fontsize=8)
             self.main_window.stats_axes[0].grid(True, alpha=0.3)
@@ -173,7 +177,7 @@ class StatisticsManager:
             
             # Plot 2: Network utilization vs time
             self.main_window.stats_axes[1].clear()
-            self.main_window.stats_axes[1].plot(times, list(self.stats_history['utilization']), 'r-', linewidth=1.5)
+            self.main_window.stats_axes[1].plot(times, list(self.stats_history['utilization']), 'r-', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[1].set_title('Network Utilization vs Time', fontsize=10)
             self.main_window.stats_axes[1].set_ylabel('Network Utilization (%)', fontsize=8)
             self.main_window.stats_axes[1].grid(True, alpha=0.3)
@@ -182,7 +186,7 @@ class StatisticsManager:
             
             # Plot 3: Average speed vs time
             self.main_window.stats_axes[2].clear()
-            self.main_window.stats_axes[2].plot(times, list(self.stats_history['avg_speed']), 'g-', linewidth=1.5)
+            self.main_window.stats_axes[2].plot(times, list(self.stats_history['avg_speed']), 'g-', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[2].set_title('Average Speed vs Time (Since Last Update)', fontsize=10)
             self.main_window.stats_axes[2].set_ylabel('Average Speed (km/h)', fontsize=8)
             self.main_window.stats_axes[2].grid(True, alpha=0.3)
@@ -191,7 +195,7 @@ class StatisticsManager:
             
             # Plot 4: Average trip distance vs time
             self.main_window.stats_axes[3].clear()
-            self.main_window.stats_axes[3].plot(times, list(self.stats_history['avg_trip_distance']), 'm-', linewidth=1.5)
+            self.main_window.stats_axes[3].plot(times, list(self.stats_history['avg_trip_distance']), 'm-', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[3].set_title('Average Trip Distance vs Time (Since Last Update)', fontsize=10)
             self.main_window.stats_axes[3].set_ylabel('Average Trip Distance (km)', fontsize=8)
             self.main_window.stats_axes[3].grid(True, alpha=0.3)
@@ -200,7 +204,7 @@ class StatisticsManager:
             
             # Plot 5: Average trip duration vs time
             self.main_window.stats_axes[4].clear()
-            self.main_window.stats_axes[4].plot(times, list(self.stats_history['avg_trip_duration']), 'c-', linewidth=1.5)
+            self.main_window.stats_axes[4].plot(times, list(self.stats_history['avg_trip_duration']), 'c-', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[4].set_title('Average Trip Duration vs Time (Since Last Update)', fontsize=10)
             self.main_window.stats_axes[4].set_ylabel('Average Trip Duration (min)', fontsize=8)
             self.main_window.stats_axes[4].grid(True, alpha=0.3)
@@ -209,7 +213,7 @@ class StatisticsManager:
             
             # Plot 6: Average nodes per trip vs time
             self.main_window.stats_axes[5].clear()
-            self.main_window.stats_axes[5].plot(times, list(self.stats_history['avg_nodes_per_trip']), 'orange', linewidth=1.5)
+            self.main_window.stats_axes[5].plot(times, list(self.stats_history['avg_nodes_per_trip']), 'orange', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[5].set_title('Average Nodes per Trip vs Time (Since Last Update)', fontsize=10)
             self.main_window.stats_axes[5].set_ylabel('Average Number of Nodes', fontsize=8)
             self.main_window.stats_axes[5].grid(True, alpha=0.3)
@@ -219,14 +223,20 @@ class StatisticsManager:
             # Plot 7: Agent type distribution vs time
             self.main_window.stats_axes[6].clear()
             if self.stats_history['agent_types']:
-                # Get all unique agent types
+                # Get all unique agent types across all time points
                 all_agent_types = set()
                 for type_dict in self.stats_history['agent_types']:
                     if isinstance(type_dict, dict):
                         all_agent_types.update(type_dict.keys())
                 
+                # Debug: Log agent types found (only occasionally)
+                if all_agent_types and len(self.stats_history['time']) % 50 == 0:  # Log every 50th update
+                    self.main_window.add_log_message(f"Debug: Agent types in history: {all_agent_types}")
+                
                 # Plot each agent type as a separate line
-                legend_added = False
+                legend_labels = []
+                legend_lines = []
+                
                 for i, agent_type in enumerate(sorted(all_agent_types)):
                     counts = []
                     for type_dict in self.stats_history['agent_types']:
@@ -235,18 +245,33 @@ class StatisticsManager:
                         else:
                             counts.append(0)
                     
-                    if any(c > 0 for c in counts):  # Only plot if there's data
+                    # Plot if there's meaningful data (not all zeros, or if it's the only type)
+                    if any(c > 0 for c in counts) or len(all_agent_types) == 1:
                         color = COLORS.AGENT_TYPE_PLOT_COLORS[i % len(COLORS.AGENT_TYPE_PLOT_COLORS)]
-                        self.main_window.stats_axes[6].plot(times, counts, color=color, linewidth=1.5, label=agent_type)
-                        legend_added = True
+                        line = self.main_window.stats_axes[6].plot(times, counts, color=color, linewidth=1.5, 
+                                                                  label=agent_type, marker='o', markersize=2)[0]
+                        legend_labels.append(agent_type)
+                        legend_lines.append(line)
                 
-                # Only add legend if we have plotted lines with labels
-                if legend_added:
+                # Add legend if we have plotted data
+                if legend_labels:
                     try:
-                        self.main_window.stats_axes[6].legend(fontsize=6, loc='upper right')
+                        self.main_window.stats_axes[6].legend(legend_lines, legend_labels, fontsize=7, 
+                                                            loc='upper right', framealpha=0.8)
                     except Exception as e:
                         # If legend fails, just continue without it
+                        self.main_window.add_log_message(f"Debug: Legend failed: {e}")
                         pass
+                else:
+                    # No meaningful data to plot
+                    self.main_window.stats_axes[6].text(0.5, 0.5, 'No agent type data available', 
+                                                       transform=self.main_window.stats_axes[6].transAxes,
+                                                       ha='center', va='center', fontsize=8)
+            else:
+                # No data at all
+                self.main_window.stats_axes[6].text(0.5, 0.5, 'Waiting for agent type data...', 
+                                                   transform=self.main_window.stats_axes[6].transAxes,
+                                                   ha='center', va='center', fontsize=8)
             
             self.main_window.stats_axes[6].set_title('Active Agent Type Count vs Time', fontsize=10)
             self.main_window.stats_axes[6].set_ylabel('Agent Type Count', fontsize=8)
@@ -256,7 +281,7 @@ class StatisticsManager:
             
             # Plot 8: Total trip count vs time
             self.main_window.stats_axes[7].clear()
-            self.main_window.stats_axes[7].plot(times, list(self.stats_history['trip_count']), 'purple', linewidth=1.5)
+            self.main_window.stats_axes[7].plot(times, list(self.stats_history['trip_count']), 'purple', linewidth=1.5, marker='o', markersize=2)
             self.main_window.stats_axes[7].set_title('Total Trip Count vs Time', fontsize=10)
             self.main_window.stats_axes[7].set_ylabel('Total Number of Trips', fontsize=8)
             self.main_window.stats_axes[7].grid(True, alpha=0.3)
