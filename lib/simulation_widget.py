@@ -1076,7 +1076,9 @@ class SimulationWidget(QWidget):
         doesn't impact real-time simulation performance. Edge limits can be optionally applied
         if max_visible_edges is set to a specific value (not None).
         """
-        edge_color = QColor(80, 80, 80)  # Much darker gray, clearly visible
+        # Use configured edge color and transparency
+        edge_color = QColor(COLORS.NETWORK_VISUALIZATION_COLORS['edge'])
+        edge_color.setAlpha(COLORS.EDGE_ALPHA)  # Apply transparency
         
         if not self.cached_edges:
             return
@@ -1106,7 +1108,8 @@ class SimulationWidget(QWidget):
             screen_x1, screen_y1 = self.world_to_screen(pos_u[0], pos_u[1])
             screen_x2, screen_y2 = self.world_to_screen(pos_v[0], pos_v[1])
             
-            painter.setPen(QPen(edge_color, 1))
+            # Use thinner edges with transparency
+            painter.setPen(QPen(edge_color, COLORS.EDGE_WIDTH))
             painter.drawLine(screen_x1, screen_y1, screen_x2, screen_y2)
             
             # Draw edge label if enabled (this uses a different pen/color)
@@ -1169,9 +1172,15 @@ class SimulationWidget(QWidget):
         if not viewport_bounds:
             return
         
+        # Use configured colors with transparency for simplified view
+        edge_color = QColor(COLORS.NETWORK_VISUALIZATION_COLORS['edge'])
+        edge_color.setAlpha(COLORS.EDGE_ALPHA)
+        node_color = QColor(COLORS.NETWORK_VISUALIZATION_COLORS['node'])
+        node_color.setAlpha(COLORS.NODE_OUTLINE_ALPHA)
+        
         # Draw only a subset of nodes and edges in viewport
-        painter.setPen(QPen(QColor(80, 80, 80), 1))  # Dark gray, clearly visible
-        painter.setBrush(QBrush(QColor(150, 150, 150)))
+        painter.setPen(QPen(edge_color, COLORS.EDGE_WIDTH))
+        painter.setBrush(QBrush(node_color))
         
         # Sample nodes within viewport
         visible_nodes = []

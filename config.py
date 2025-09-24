@@ -158,13 +158,13 @@ class SimulationConfig:
     # Default simulation parameters
     DEFAULT_NUM_AGENTS: int = 300
     MIN_AGENTS: int = 10
-    MAX_AGENTS: int = 1000
+    MAX_AGENTS: int = 10000
     
     DEFAULT_DURATION_HOURS: int = 24
     MIN_DURATION: int = 1
     MAX_DURATION: int = 48
     
-    DEFAULT_SPEED_MULTIPLIER: int = 25
+    DEFAULT_SPEED_MULTIPLIER: int = 50
     MIN_SPEED: int = 1
     MAX_SPEED: int = 1000
     SPEED_SUFFIX: str = "x"
@@ -452,6 +452,18 @@ class ColorConfig:
         'high': "#FF9900",     # Orange (70-90% utilization)
         'critical': "#FF0000", # Red (> 90% utilization)
     })
+    
+    # Network visualization colors
+    NETWORK_VISUALIZATION_COLORS: Dict[str, str] = field(default_factory=lambda: {
+        'edge': "#505050",        # Dark gray for edges
+        'node': "#2E2E2E",        # Darker gray for nodes
+        'background': "#F0F0F0",  # Light gray background
+    })
+    
+    # Network edge rendering settings
+    EDGE_WIDTH: float = 0.5         # Thinner edges
+    EDGE_ALPHA: int = 120           # Transparency (0-255, 120 is ~47% opacity)
+    NODE_OUTLINE_ALPHA: int = 180   # Node outline transparency
     
     # Performance indicator colors
     PERFORMANCE_COLORS: Dict[str, str] = field(default_factory=lambda: {

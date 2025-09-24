@@ -90,14 +90,27 @@ class StatisticsManager:
         # Calculate trip-based statistics from completed trips (since last update)
         avg_speed, avg_distance, avg_duration, avg_nodes_per_trip, total_trip_count = self._calculate_trip_statistics_since_last_update()
         
-        # Get active agent type distribution from status_info
+        # Get current active agent type distribution from status_info
+        # Convert from percentages to actual counts based on moving_agents count
         active_agent_type_percentages = status_info.get('active_agent_types', {})
+        moving_agents_count = status_info['moving_agents']
+        
+        # If no agent type data is available, create a fallback
+        if not active_agent_type_percentages and moving_agents_count > 0:
+            # Create a default "unknown" agent type with all agents
+            active_agent_type_percentages = {"unknown": 100.0}
+        
+        # Convert percentages to actual counts
+        active_agent_types = {}
+        for agent_type, percentage in active_agent_type_percentages.items():
+            actual_count = int((percentage / 100.0) * moving_agents_count)
+            active_agent_types[agent_type] = actual_count
         
         self.stats_history['avg_speed'].append(avg_speed)
         self.stats_history['avg_trip_distance'].append(avg_distance)
         self.stats_history['avg_trip_duration'].append(avg_duration)
         self.stats_history['avg_nodes_per_trip'].append(avg_nodes_per_trip)
-        self.stats_history['agent_types'].append(active_agent_type_percentages)
+        self.stats_history['agent_types'].append(active_agent_types)
         self.stats_history['trip_count'].append(total_trip_count)
         
         # Update plots (only if we have data and plots are initialized)
@@ -209,22 +222,34 @@ class StatisticsManager:
                 # Get all unique agent types
                 all_agent_types = set()
                 for type_dict in self.stats_history['agent_types']:
-                    all_agent_types.update(type_dict.keys())
+                    if isinstance(type_dict, dict):
+                        all_agent_types.update(type_dict.keys())
                 
                 # Plot each agent type as a separate line
+                legend_added = False
                 for i, agent_type in enumerate(sorted(all_agent_types)):
-                    percentages = []
+                    counts = []
                     for type_dict in self.stats_history['agent_types']:
-                        percentages.append(type_dict.get(agent_type, 0))
+                        if isinstance(type_dict, dict):
+                            counts.append(type_dict.get(agent_type, 0))
+                        else:
+                            counts.append(0)
                     
-                    if any(p > 0 for p in percentages):  # Only plot if there's data
+                    if any(c > 0 for c in counts):  # Only plot if there's data
                         color = COLORS.AGENT_TYPE_PLOT_COLORS[i % len(COLORS.AGENT_TYPE_PLOT_COLORS)]
-                        self.main_window.stats_axes[6].plot(times, percentages, color=color, linewidth=1.5, label=agent_type)
+                        self.main_window.stats_axes[6].plot(times, counts, color=color, linewidth=1.5, label=agent_type)
+                        legend_added = True
                 
-                self.main_window.stats_axes[6].legend(fontsize=6, loc='upper right')
+                # Only add legend if we have plotted lines with labels
+                if legend_added:
+                    try:
+                        self.main_window.stats_axes[6].legend(fontsize=6, loc='upper right')
+                    except Exception as e:
+                        # If legend fails, just continue without it
+                        pass
             
-            self.main_window.stats_axes[6].set_title('Active Agent Type Distribution vs Time', fontsize=10)
-            self.main_window.stats_axes[6].set_ylabel('Agent Type Percentage (%)', fontsize=8)
+            self.main_window.stats_axes[6].set_title('Active Agent Type Count vs Time', fontsize=10)
+            self.main_window.stats_axes[6].set_ylabel('Agent Type Count', fontsize=8)
             self.main_window.stats_axes[6].grid(True, alpha=0.3)
             self.main_window.stats_axes[6].tick_params(labelsize=8)
             self.format_time_axis(self.main_window.stats_axes[6], times)
@@ -285,7 +310,7 @@ class StatisticsManager:
                 "average_trip_distance_vs_time",
                 "average_trip_duration_vs_time",
                 "average_nodes_per_trip_vs_time",
-                "active_agent_type_distribution_vs_time",
+                "active_agent_type_count_vs_time",
                 "total_trip_count_vs_time"
             ]
             
