@@ -63,6 +63,11 @@ class SimulationThread(QThread):
         # Pre-computed ST selector (can be set externally to skip computation)
         self.st_selector = None
         
+        # Status update caching for performance
+        self._cached_agent_type_percentages = {}
+        self._cached_network_stats = {}
+        self._last_network_stats_step = 0
+        
     def apply_settings(self, settings):
         """Apply settings to the simulation thread"""
         self.settings = settings
@@ -405,32 +410,44 @@ class SimulationThread(QThread):
     ### BOTTLENECKS ###
     
     def _emit_status_update(self):
-        """Emit status update efficiently"""
-        # Count moving agents efficiently and track their types
-        moving_agents = [agent for agent in self.agents if agent.state == 'moving']
-        moving_count = len(moving_agents)
+        """Emit status update efficiently with caching and throttling"""
+        # Use fast counting instead of list comprehension
+        moving_count = sum(1 for agent in self.agents if agent.state == 'moving')
         
-        # Calculate agent type distribution for moving agents
-        agent_type_counts = {}
-        for agent in moving_agents:
-            agent_type = getattr(agent, 'agent_type', 'unknown')
-            agent_type_counts[agent_type] = agent_type_counts.get(agent_type, 0) + 1
-        
-        # Convert to percentages
+        # Only calculate agent type distribution every 10th status update to reduce overhead
         agent_type_percentages = {}
-        if moving_count > 0:
-            for agent_type, count in agent_type_counts.items():
-                agent_type_percentages[agent_type] = (count / moving_count) * 100
+        if self.step % (STATISTICS.STATS_UPDATE_STEP_FREQUENCY * 10) == 0:
+            # Count agent types only for moving agents (optimized)
+            agent_type_counts = {}
+            for agent in self.agents:
+                if agent.state == 'moving':
+                    agent_type = getattr(agent, 'agent_type', 'unknown')
+                    agent_type_counts[agent_type] = agent_type_counts.get(agent_type, 0) + 1
+            
+            # Convert to percentages and cache
+            if moving_count > 0:
+                for agent_type, count in agent_type_counts.items():
+                    agent_type_percentages[agent_type] = (count / moving_count) * 100
+            
+            # Cache the result for subsequent updates
+            self._cached_agent_type_percentages = agent_type_percentages
+        else:
+            # Use cached data for intermediate updates
+            agent_type_percentages = getattr(self, '_cached_agent_type_percentages', {})
         
-        # Get network statistics (cache if possible)
-        stats = self.traffic_manager.get_network_statistics()
+        # Get network statistics with reduced frequency for expensive calls
+        if not hasattr(self, '_last_network_stats_step') or (self.step - self._last_network_stats_step) >= 100:
+            self._cached_network_stats = self.traffic_manager.get_network_statistics()
+            self._last_network_stats_step = self.step
         
-        # Emit status update
+        network_utilization = self._cached_network_stats.get('network_utilization', 0.0) if hasattr(self, '_cached_network_stats') else 0.0
+        
+        # Emit lightweight status update
         status_info = {
             'simulation_time': self.simulation_time,
             'moving_agents': moving_count,
             'total_agents': len(self.agents),
-            'network_utilization': stats.get('network_utilization', 0.0),
+            'network_utilization': network_utilization,
             'active_agent_types': agent_type_percentages
         }
         self.status_updated.emit(status_info)

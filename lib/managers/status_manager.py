@@ -24,6 +24,13 @@ class StatusManager:
         self.main_window = main_window
         self.simulation_start_time = None
         
+        # Status update throttling
+        self._last_ui_update_time = 0
+        self._ui_update_interval = 100  # Update UI every 100ms minimum
+        self._cached_status = {}
+        self._last_performance_update = 0
+        self._performance_update_interval = 500  # Update performance info every 500ms
+        
     def set_simulation_start_time(self, start_time=None):
         """Set the simulation start time
         
@@ -51,14 +58,26 @@ class StatusManager:
             self.main_window.network_util_label.setText(UI.NETWORK_UTIL_TEMPLATE.format(UI.DEFAULT_NETWORK_UTIL))
     
     def update_status(self, status_info):
-        """Update the status bar with simulation information
+        """Update the status bar with simulation information - throttled for performance
         
         Args:
             status_info: Dictionary containing status information
         """
-        # Update trip manager's current simulation time
+        import time
+        current_time = time.time() * 1000  # Convert to milliseconds
+        
+        # Always update trip manager (lightweight operation)
         if hasattr(self.main_window, 'trip_manager'):
             self.main_window.trip_manager.update_current_simulation_time(status_info['simulation_time'])
+        
+        # Cache the latest status info
+        self._cached_status = status_info
+        
+        # Throttle UI updates to reduce bottleneck
+        if (current_time - self._last_ui_update_time) < self._ui_update_interval:
+            return
+        
+        self._last_ui_update_time = current_time
         
         # Update simulation time (starting at 6 AM)
         self._update_simulation_time(status_info['simulation_time'])
@@ -72,10 +91,12 @@ class StatusManager:
         # Update network utilization
         self._update_network_utilization(status_info['network_utilization'])
         
-        # Update performance status
-        self.update_performance_status()
+        # Update performance status less frequently (expensive operation)
+        if (current_time - self._last_performance_update) >= self._performance_update_interval:
+            self.update_performance_status()
+            self._last_performance_update = current_time
         
-        # Update statistics for real-time plots
+        # Update statistics for real-time plots (throttled)
         if hasattr(self.main_window, 'statistics_manager'):
             self.main_window.statistics_manager.update_statistics(status_info)
     
@@ -144,19 +165,36 @@ class StatusManager:
                               self.main_window.simulation_thread and 
                               self.main_window.simulation_thread.running)
             
-            # Determine status and color based on node count and LOD usage
-            if total_nodes > 10000:
-                status = "LOD+" if use_lod else "Heavy"
-                color = COLORS.PERFORMANCE_COLORS['fair'] if use_lod else COLORS.PERFORMANCE_COLORS['critical']
-            elif total_nodes > 5000:
-                status = "LOD" if use_lod else "Medium"
-                color = COLORS.PERFORMANCE_COLORS['good'] if use_lod else COLORS.PERFORMANCE_COLORS['poor']
+            # Cache performance level determination to avoid recalculation
+            cache_key = f"{total_nodes}_{use_lod}_{thread_optimized}"
+            if not hasattr(self, '_performance_cache') or self._performance_cache.get('key') != cache_key:
+                # Determine status and color based on node count and LOD usage
+                if total_nodes > 10000:
+                    status = "LOD+" if use_lod else "Heavy"
+                    color = COLORS.PERFORMANCE_COLORS['fair'] if use_lod else COLORS.PERFORMANCE_COLORS['critical']
+                elif total_nodes > 5000:
+                    status = "LOD" if use_lod else "Medium"
+                    color = COLORS.PERFORMANCE_COLORS['good'] if use_lod else COLORS.PERFORMANCE_COLORS['poor']
+                else:
+                    status = "Full"
+                    color = COLORS.PERFORMANCE_COLORS['excellent']
+                
+                # Add thread optimization indicator
+                thread_indicator = " [T]" if thread_optimized else ""
+                
+                # Cache the results
+                self._performance_cache = {
+                    'key': cache_key,
+                    'status': status,
+                    'color': color,
+                    'thread_indicator': thread_indicator
+                }
             else:
-                status = "Full"
-                color = COLORS.PERFORMANCE_COLORS['excellent']
-            
-            # Add thread optimization indicator
-            thread_indicator = " [T]" if thread_optimized else ""
+                # Use cached values
+                cached = self._performance_cache
+                status = cached['status']
+                color = cached['color']
+                thread_indicator = cached['thread_indicator']
             
             # Update the performance label
             self.main_window.performance_label.setText(f"Performance: {status}{thread_indicator} ({total_nodes:,} nodes, {zoom:.1f}x)")

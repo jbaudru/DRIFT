@@ -200,8 +200,8 @@ class StatisticsConfig:
     STATS_HISTORY_MAXLEN: int = 1000  # Keep last 1000 data points
     AGENT_UPDATE_BUFFER_MAXLEN: int = 500  # Reduced for more responsive updates
     
-    # Statistics update frequency
-    STATS_UPDATE_STEP_FREQUENCY: int = 50  # Update statistics every N simulation steps
+    # Statistics update frequency - optimized for better performance
+    STATS_UPDATE_STEP_FREQUENCY: int = 100  # Update statistics every N simulation steps (reduced frequency for better performance)
     
     # Plot formatting
     TIME_AXIS_FONTSIZE: int = 8
