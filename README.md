@@ -9,7 +9,7 @@
 
 A mesoscopic traffic simulator designed to balance the fidelity of microscopic modeling with the scalability of macroscopic approaches.
 
-![DRIFT Screenshot](fig/github.png)
+![DRIFT Screenshot](fig/REPORT-ex-graph.png)
 
 ## Overview
 
@@ -78,8 +78,8 @@ DRIFT (DRIve Fleet Tool) represents individual vehicles as discrete agents with 
 ### Setup
 
 ```bash
-git clone https://github.com/jbaudru/thesis.git
-cd thesis/research/road-simulation/sim-v2
+git clone https://github.com/jbaudru/DRIFT.git
+cd DRIFT
 pip install -r requirements.txt
 python main.py
 ```
