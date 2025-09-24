@@ -74,6 +74,14 @@ class SimulationWidget(QWidget):
         self.reset_button_rect = None
         self.reset_button_hovered = False
         
+        # Edge labels toggle button settings
+        self.show_edge_labels = False  # Initially hidden
+        self.show_edge_labels_button = True  # Show button when network is loaded
+        self.edge_labels_button_rect = None
+        self.edge_labels_button_hovered = False
+        self.edge_labels_button_size = 25
+        self.edge_labels_button_margin = 10
+        
         # Agent selection and info display
         self.selected_agent = None
         self.show_agent_info = False
@@ -89,6 +97,9 @@ class SimulationWidget(QWidget):
         
         # Initialize reset button rect
         self._update_reset_button_rect()
+        
+        # Initialize edge labels button rect
+        self._update_edge_labels_button_rect()
     
     def add_log_message(self, message):
         """Add a log message - stub method for when no parent logger is available"""
@@ -128,6 +139,11 @@ class SimulationWidget(QWidget):
                 self.reset_view()
                 return
             
+            # Check if click is on edge labels button
+            if self.show_edge_labels_button and self._is_edge_labels_button_clicked(event.pos()):
+                self.toggle_edge_labels()
+                return
+            
             # Check if click is on an agent
             clicked_agent = self.get_agent_at_position(event.pos())
             if clicked_agent:
@@ -153,6 +169,13 @@ class SimulationWidget(QWidget):
             hover = self._is_reset_button_clicked(event.pos())
             if hover != self.reset_button_hovered:
                 self.reset_button_hovered = hover
+                self.update()  # Redraw for hover effect
+        
+        # Check edge labels button hover state
+        if self.show_edge_labels_button and hasattr(self, 'edge_labels_button_rect') and self.edge_labels_button_rect:
+            hover = self._is_edge_labels_button_clicked(event.pos())
+            if hover != self.edge_labels_button_hovered:
+                self.edge_labels_button_hovered = hover
                 self.update()  # Redraw for hover effect
         
         # Handle panning
@@ -181,8 +204,9 @@ class SimulationWidget(QWidget):
             self.background_needs_redraw = True
             self.background_pixmap = None
         
-        # Update reset button position
+        # Update button positions on resize
         self._update_reset_button_rect()
+        self._update_edge_labels_button_rect()
         
     def setup_colors(self):
         """Define color schemes for different agent types and zones using configuration"""
@@ -227,17 +251,21 @@ class SimulationWidget(QWidget):
             
             # Enable reset button and update its position
             self.show_reset_button = True
+            self.show_edge_labels_button = True
             self._update_reset_button_rect()
+            self._update_edge_labels_button_rect()
             
             self.add_log_message(f"Network loaded: {node_count} nodes, {edge_count} edges")
             if self.use_level_of_detail:
                 self.add_log_message("Large network detected - enabling performance optimizations")
             
-            # Enable reset button overlay
+            # Enable button overlays
             self.show_reset_button = True
+            self.show_edge_labels_button = True
         else:
-            # Disable reset button overlay
+            # Disable button overlays
             self.show_reset_button = False
+            self.show_edge_labels_button = False
         
         self.update()
     
@@ -905,9 +933,11 @@ class SimulationWidget(QWidget):
         if self.show_legend:
             self.draw_legend(painter)
         
-        # Draw reset button overlay (only when graph is loaded)
+        # Draw button overlays (only when graph is loaded)
         if self.show_reset_button:
             self.draw_reset_button(painter)
+        if self.show_edge_labels_button:
+            self.draw_edge_labels_button(painter)
         
         # Draw agent info panel if an agent is selected
         if self.show_agent_info and self.selected_agent:
@@ -1046,10 +1076,10 @@ class SimulationWidget(QWidget):
         doesn't impact real-time simulation performance. Edge limits can be optionally applied
         if max_visible_edges is set to a specific value (not None).
         """
+        edge_color = QColor(80, 80, 80)  # Much darker gray, clearly visible
+        
         if not self.cached_edges:
             return
-        
-        painter.setPen(QPen(QColor(80, 80, 80), 1))  # Much darker gray, clearly visible
         
         # Get edges to draw (apply limit only if specified)
         edges_to_draw = self.cached_edges
@@ -1076,7 +1106,22 @@ class SimulationWidget(QWidget):
             screen_x1, screen_y1 = self.world_to_screen(pos_u[0], pos_u[1])
             screen_x2, screen_y2 = self.world_to_screen(pos_v[0], pos_v[1])
             
+            painter.setPen(QPen(edge_color, 1))
             painter.drawLine(screen_x1, screen_y1, screen_x2, screen_y2)
+            
+            # Draw edge label if enabled (this uses a different pen/color)
+            if self.show_edge_labels:
+                # Save current painter state
+                current_pen = painter.pen()
+                current_font = painter.font()
+                
+                # Draw label (this method sets its own pen and font)
+                self.draw_edge_label(painter, u, v, data, screen_x1, screen_y1, screen_x2, screen_y2)
+                
+                # Restore painter state for edge drawing
+                painter.setPen(current_pen)
+                painter.setFont(current_font)
+            
             drawn_edges += 1
     
     def draw_nodes_optimized(self, painter):
@@ -1626,6 +1671,142 @@ class SimulationWidget(QWidget):
             self.reset_button_rect = QRect(x, y, self.reset_button_size, self.reset_button_size)
         else:
             self.reset_button_rect = None
+    
+    def draw_edge_labels_button(self, painter):
+        """Draw the edge labels toggle button overlay"""
+        if not hasattr(self, 'edge_labels_button_rect') or not self.edge_labels_button_rect:
+            return
+            
+        # Set button background color (more opaque when hovered)
+        if self.edge_labels_button_hovered:
+            painter.setBrush(QBrush(QColor(255, 255, 255, 180)))
+        else:
+            painter.setBrush(QBrush(QColor(255, 255, 255, 120)))
+            
+        painter.setPen(QPen(QColor(100, 100, 100), 1))
+        painter.drawRoundedRect(self.edge_labels_button_rect, 3, 3)
+        
+        # Draw "T" icon to represent text/labels
+        painter.setPen(QPen(QColor(60, 60, 60), 2))
+        center_x = self.edge_labels_button_rect.center().x()
+        center_y = self.edge_labels_button_rect.center().y()
+        
+        # Draw T shape
+        font_size = 8
+        # Top horizontal line of T
+        painter.drawLine(center_x - font_size//2, center_y - font_size//2, 
+                        center_x + font_size//2, center_y - font_size//2)
+        # Vertical line of T
+        painter.drawLine(center_x, center_y - font_size//2, center_x, center_y + font_size//2)
+        
+        # Add visual indicator if labels are currently shown
+        if self.show_edge_labels:
+            painter.setBrush(QBrush(QColor(0, 200, 0, 150)))
+            painter.setPen(QPen(QColor(0, 150, 0), 1))
+            indicator_size = 4
+            painter.drawEllipse(self.edge_labels_button_rect.right() - indicator_size - 2,
+                              self.edge_labels_button_rect.top() + 2,
+                              indicator_size, indicator_size)
+    
+    def _is_edge_labels_button_clicked(self, pos):
+        """Check if the given position is within the edge labels button"""
+        return self.edge_labels_button_rect and self.edge_labels_button_rect.contains(pos)
+    
+    def _update_edge_labels_button_rect(self):
+        """Update the edge labels button rectangle position based on current widget size"""
+        if self.width() > 0 and self.height() > 0:
+            x = self.width() - self.edge_labels_button_size - self.edge_labels_button_margin
+            # Position above the reset button
+            y = self.height() - (2 * self.edge_labels_button_size) - (2 * self.edge_labels_button_margin)
+            self.edge_labels_button_rect = QRect(x, y, self.edge_labels_button_size, self.edge_labels_button_size)
+        else:
+            self.edge_labels_button_rect = None
+    
+    def toggle_edge_labels(self):
+        """Toggle the display of edge labels"""
+        self.show_edge_labels = not self.show_edge_labels
+        
+        # Force a full redraw when toggling labels since they affect the background
+        self.background_needs_redraw = True
+        self.background_pixmap = None
+        self.update()
+        
+        # Log the state change
+        state = "enabled" if self.show_edge_labels else "disabled"
+        self.add_log_message(f"Edge labels {state}")
+    
+    def draw_edge_label(self, painter, u, v, data, screen_x1, screen_y1, screen_x2, screen_y2):
+        """Draw label for an edge based on zoom level and edge data"""
+        # Only draw labels if zoom is sufficient (performance optimization)
+        if self.zoom_factor < 0.5:
+            return
+        
+        # Calculate midpoint of edge
+        mid_x = (screen_x1 + screen_x2) / 2
+        mid_y = (screen_y1 + screen_y2) / 2
+        
+                # Determine what to display as label - use second element, then first, then u-v
+        label_text = ""
+        if hasattr(data, 'get') and isinstance(data, dict):
+            if data:  # Check if data dictionary is not empty
+                # Try to get the second element first
+                data_items = list(data.items())
+                
+                if len(data_items) >= 2:
+                    # Use second element if available
+                    second_key, second_value = data_items[1]
+                    
+                    # Format the second attribute value appropriately
+                    if isinstance(second_value, (int, float)):
+                        if second_key == 'length' and second_value > 1000:
+                            # Special formatting for length values
+                            length_km = second_value / 1000
+                            label_text = f"{length_km:.1f}km"
+                        else:
+                            label_text = f"{second_value:.1f}"
+                    else:
+                        # For string or other types, truncate if too long
+                        label_text = str(second_value)[:25] + "..."
+                
+                elif len(data_items) >= 1:
+                    # Fall back to first element if only one element exists
+                    first_key, first_value = data_items[0]
+                    
+                    # Format the first attribute value appropriately
+                    if isinstance(first_value, (int, float)):
+                        if first_key == 'length' and first_value > 1000:
+                            # Special formatting for length values
+                            length_km = first_value / 1000
+                            label_text = f"{length_km:.1f}km"
+                        else:
+                            label_text = f"{first_value:.1f}"
+                    else:
+                        # For string or other types, truncate if too long
+                        label_text = str(first_value)[:25] + "..."
+        
+        # Fallback to edge endpoints if no data available
+        if not label_text:
+            label_text = f"{u}-{v}"
+        
+        # Scale font size based on zoom level
+        base_font_size = 2
+        font_size = max(2, min(8, int(base_font_size * self.zoom_factor)))
+        
+        # Set up font and color for label
+        font = QFont("Arial", font_size)
+        painter.setFont(font)
+        painter.setPen(QPen(QColor(50, 50, 150), 1))  # Dark blue color for labels
+        
+        metrics = painter.fontMetrics()
+        text_width = metrics.horizontalAdvance(label_text)
+        text_height = metrics.height()
+        
+        # Background rectangle
+        #bg_rect = QRect(int(mid_x - text_width/2 - 2), int(mid_y - text_height/2 - 1),text_width + 4, text_height + 2)
+        #painter.fillRect(bg_rect, QColor(255, 255, 255, 180))
+        
+        # Draw the label text
+        painter.drawText(int(mid_x - text_width/2), int(mid_y + text_height/4), label_text)
     
     def draw_agent_info_panel(self, painter):
         """Draw the agent information panel for the selected agent"""
