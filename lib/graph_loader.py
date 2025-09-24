@@ -706,10 +706,41 @@ class GraphLoader:
         return G
 
     def _ensure_edge_weights(self, G: nx.MultiDiGraph) -> None:
-        """Ensure all edges have weight attributes."""
+        """Ensure all edges have required attributes for simulation."""
+        from config import SIMULATION
+        
+        edges_with_missing_speed = 0
+        edges_with_missing_length = 0
+        edges_with_missing_weight = 0
+        
         for u, v, key, data in G.edges(keys=True, data=True):
+            # Ensure speed_kph attribute
+            if 'speed_kph' not in data or data['speed_kph'] is None:
+                data['speed_kph'] = SIMULATION.DEFAULT_SPEED_KPH
+                edges_with_missing_speed += 1
+            else:
+                # Ensure it's a valid number
+                try:
+                    data['speed_kph'] = float(data['speed_kph'])
+                except (ValueError, TypeError):
+                    data['speed_kph'] = SIMULATION.DEFAULT_SPEED_KPH
+                    edges_with_missing_speed += 1
+            
+            # Ensure length attribute
+            if 'length' not in data or data['length'] is None:
+                data['length'] = SIMULATION.DEFAULT_EDGE_LENGTH
+                edges_with_missing_length += 1
+            else:
+                # Ensure it's a valid number
+                try:
+                    data['length'] = float(data['length'])
+                except (ValueError, TypeError):
+                    data['length'] = SIMULATION.DEFAULT_EDGE_LENGTH
+                    edges_with_missing_length += 1
+            
+            # Ensure weight attribute for pathfinding
             if 'weight' not in data:
-                # Try to calculate weight from position data
+                # Try to calculate weight from position data first
                 if 'pos' in G.nodes[u] and 'pos' in G.nodes[v]:
                     try:
                         x1, y1 = G.nodes[u]['pos']
@@ -717,9 +748,32 @@ class GraphLoader:
                         weight = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
                         data['weight'] = weight
                     except (ValueError, TypeError):
-                        data['weight'] = 1.0
+                        # Fallback to using length if position calculation fails
+                        data['weight'] = data['length']
+                        edges_with_missing_weight += 1
                 else:
-                    data['weight'] = 1.0
+                    # Use length as weight if no position data
+                    data['weight'] = data['length']
+                    edges_with_missing_weight += 1
+            
+            # Calculate travel_time from length and speed
+            try:
+                length_km = data['length'] / 1000.0  # Convert meters to kilometers
+                travel_time_hours = length_km / data['speed_kph']
+                data['travel_time'] = travel_time_hours * 3600  # Convert to seconds
+            except (ValueError, TypeError, ZeroDivisionError):
+                # Fallback calculation
+                data['travel_time'] = data['length'] / (SIMULATION.DEFAULT_SPEED_KPH * SIMULATION.KPH_TO_MPS_FACTOR)
+        
+        # Log information about applied defaults
+        if edges_with_missing_speed > 0:
+            self._log_message(f"Applied default speed ({SIMULATION.DEFAULT_SPEED_KPH} km/h) to {edges_with_missing_speed} edges")
+        
+        if edges_with_missing_length > 0:
+            self._log_message(f"Applied default length ({SIMULATION.DEFAULT_EDGE_LENGTH} m) to {edges_with_missing_length} edges")
+        
+        if edges_with_missing_weight > 0:
+            self._log_message(f"Applied default weight to {edges_with_missing_weight} edges")
 
     def _validate_graph_for_simulation(self, G: nx.MultiDiGraph) -> None:
         """Validate that the graph is suitable for simulation."""

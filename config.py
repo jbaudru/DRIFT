@@ -181,8 +181,8 @@ class SimulationConfig:
     
     # Agent behavior constants
     MIN_WAIT_TIME: float = 60.0  # seconds
-    DEFAULT_SPEED_KPH: float = 30.0
-    DEFAULT_EDGE_LENGTH: float = 1.0
+    DEFAULT_SPEED_KPH: float = 30.0  # 30 km/h default speed when not specified
+    DEFAULT_EDGE_LENGTH: float = 1000.0  # 1000 meters default distance when not specified
     KPH_TO_MPS_FACTOR: float = 1000 / 3600  # Convert km/h to m/s
     
     # Update frequencies and performance

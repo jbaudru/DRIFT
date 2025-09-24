@@ -1,0 +1,2597 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d6" for="edge" attr.name="inter" attr.type="boolean"/>
+<key id="d5" for="edge" attr.name="weight" attr.type="long"/>
+<key id="d4" for="node" attr.name="duration" attr.type="double"/>
+<key id="d3" for="node" attr.name="pitch_class" attr.type="string"/>
+<key id="d2" for="node" attr.name="pitch" attr.type="string"/>
+<key id="d1" for="node" attr.name="layer" attr.type="long"/>
+<key id="d0" for="node" attr.name="weight" attr.type="long"/>
+<graph edgedefault="directed"><node id="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">35</data>
+  <data key="d1">1</data>
+  <data key="d2">F2</data>
+  <data key="d3">F</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">13</data>
+  <data key="d1">1</data>
+  <data key="d2">G2</data>
+  <data key="d3">G</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">26</data>
+  <data key="d1">1</data>
+  <data key="d2">B-2</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">45</data>
+  <data key="d1">1</data>
+  <data key="d2">C#3</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">8</data>
+  <data key="d1">1</data>
+  <data key="d2">E2</data>
+  <data key="d3">E</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">G2</data>
+  <data key="d3">G</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">18</data>
+  <data key="d1">1</data>
+  <data key="d2">A2</data>
+  <data key="d3">A</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">39</data>
+  <data key="d1">1</data>
+  <data key="d2">C3</data>
+  <data key="d3">C</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">48</data>
+  <data key="d1">1</data>
+  <data key="d2">E-3</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">19</data>
+  <data key="d1">1</data>
+  <data key="d2">F#2</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">5</data>
+  <data key="d1">1</data>
+  <data key="d2">A2</data>
+  <data key="d3">A</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">35</data>
+  <data key="d1">1</data>
+  <data key="d2">F#3</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">11</data>
+  <data key="d1">1</data>
+  <data key="d2">C3</data>
+  <data key="d3">C</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">14</data>
+  <data key="d1">1</data>
+  <data key="d2">A3</data>
+  <data key="d3">A</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">7</data>
+  <data key="d1">1</data>
+  <data key="d2">E-3</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">9</data>
+  <data key="d1">1</data>
+  <data key="d2">F#3</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">29</data>
+  <data key="d1">1</data>
+  <data key="d2">B-3</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">20</data>
+  <data key="d1">1</data>
+  <data key="d2">C4</data>
+  <data key="d3">C</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">14</data>
+  <data key="d1">1</data>
+  <data key="d2">E-4</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">39</data>
+  <data key="d1">1</data>
+  <data key="d2">F3</data>
+  <data key="d3">F</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">A3</data>
+  <data key="d3">A</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">15</data>
+  <data key="d1">1</data>
+  <data key="d2">C#4</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">7</data>
+  <data key="d1">1</data>
+  <data key="d2">F#4</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">13</data>
+  <data key="d1">1</data>
+  <data key="d2">F4</data>
+  <data key="d3">F</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">11</data>
+  <data key="d1">1</data>
+  <data key="d2">C#4</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">E4</data>
+  <data key="d3">E</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">C4</data>
+  <data key="d3">C</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">22</data>
+  <data key="d1">1</data>
+  <data key="d2">E3</data>
+  <data key="d3">E</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">7</data>
+  <data key="d1">1</data>
+  <data key="d2">B-3</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">23</data>
+  <data key="d1">1</data>
+  <data key="d2">G#3</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">12</data>
+  <data key="d1">1</data>
+  <data key="d2">B3</data>
+  <data key="d3">B</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">5</data>
+  <data key="d1">1</data>
+  <data key="d2">F4</data>
+  <data key="d3">F</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">E4</data>
+  <data key="d3">E</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">9</data>
+  <data key="d1">1</data>
+  <data key="d2">B3</data>
+  <data key="d3">B</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">D4</data>
+  <data key="d3">D</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">G3</data>
+  <data key="d3">G</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">E3</data>
+  <data key="d3">E</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">D3</data>
+  <data key="d3">D</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">G#3</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">E3</data>
+  <data key="d3">E</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">F3</data>
+  <data key="d3">F</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">A3</data>
+  <data key="d3">A</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">E-4</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">C#4</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">C#3</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">C4</data>
+  <data key="d3">C</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">B2</data>
+  <data key="d3">B</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">16</data>
+  <data key="d1">1</data>
+  <data key="d2">D3</data>
+  <data key="d3">D</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">G3</data>
+  <data key="d3">G</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">14</data>
+  <data key="d1">1</data>
+  <data key="d2">G3</data>
+  <data key="d3">G</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">E-3</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">B2</data>
+  <data key="d3">B</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">D4</data>
+  <data key="d3">D</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">E4</data>
+  <data key="d3">E</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">F#4</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">G4</data>
+  <data key="d3">G</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">G#4</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">E-4</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">G#3</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">12</data>
+  <data key="d1">1</data>
+  <data key="d2">F3</data>
+  <data key="d3">F</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">15</data>
+  <data key="d1">1</data>
+  <data key="d2">G#2</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">5</data>
+  <data key="d1">1</data>
+  <data key="d2">G#2</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">F#2</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;D2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">D2</data>
+  <data key="d3">D</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">18</data>
+  <data key="d1">1</data>
+  <data key="d2">E-2</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">8</data>
+  <data key="d1">1</data>
+  <data key="d2">F2</data>
+  <data key="d3">F</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">G1</data>
+  <data key="d3">G</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">G#1</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">9</data>
+  <data key="d1">1</data>
+  <data key="d2">B-1</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">10</data>
+  <data key="d1">1</data>
+  <data key="d2">C2</data>
+  <data key="d3">C</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">19</data>
+  <data key="d1">1</data>
+  <data key="d2">C#2</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">E-2</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">18</data>
+  <data key="d1">1</data>
+  <data key="d2">B-2</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">B-1</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">5</data>
+  <data key="d1">1</data>
+  <data key="d2">A2</data>
+  <data key="d3">A</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">B3</data>
+  <data key="d3">B</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">A4</data>
+  <data key="d3">A</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">B-4</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C5&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">C5</data>
+  <data key="d3">C</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">B-4</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">G#4</data>
+  <data key="d3">G#</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">B-3</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">F#3</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">G4</data>
+  <data key="d3">G</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">B2</data>
+  <data key="d3">B</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">2</data>
+  <data key="d1">1</data>
+  <data key="d2">C2</data>
+  <data key="d3">C</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">B1</data>
+  <data key="d3">B</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">3</data>
+  <data key="d1">1</data>
+  <data key="d2">B1</data>
+  <data key="d3">B</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">A1</data>
+  <data key="d3">A</data>
+  <data key="d4">0.375</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">F#1</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">F1</data>
+  <data key="d3">F</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">A1</data>
+  <data key="d3">A</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">A1</data>
+  <data key="d3">A</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">B-1</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">C2</data>
+  <data key="d3">C</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">C#2</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">E-2</data>
+  <data key="d3">E-</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">F#2</data>
+  <data key="d3">F#</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">6</data>
+  <data key="d1">1</data>
+  <data key="d2">C3</data>
+  <data key="d3">C</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">B-2</data>
+  <data key="d3">B-</data>
+  <data key="d4">0.6666666666666666</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">C#3</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d0">4</data>
+  <data key="d1">1</data>
+  <data key="d2">C#2</data>
+  <data key="d3">C#</data>
+  <data key="d4">0.3333333333333333</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 1.0, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">B-1</data>
+  <data key="d3">B-</data>
+  <data key="d4">1.0</data>
+</node>
+<node id="{&quot;pitch&quot;: &quot;F3 B-3 C#4 F4&quot;, &quot;duration&quot;: 2.0, &quot;layer&quot;: 1}">
+  <data key="d0">1</data>
+  <data key="d1">1</data>
+  <data key="d2">F3 B-3 C#4 F4</data>
+  <data key="d3">C# F B-</data>
+  <data key="d4">2.0</data>
+</node>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">7</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">6</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">6</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">9</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">8</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">10</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">8</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">7</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">10</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">7</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">12</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">6</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C5&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;D2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">7</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">6</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">5</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C5&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C5&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#4&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">4</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;G4&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;D4&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;A1&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;E-2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;A2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;F#2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C3&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">6</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.6666666666666666, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F#3&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#3&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">2</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;C2&quot;, &quot;duration&quot;: 0.375, &quot;layer&quot;: 1}">
+  <data key="d5">3</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;C#2&quot;, &quot;duration&quot;: 0.3333333333333333, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 1.0, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+<edge source="{&quot;pitch&quot;: &quot;B-1&quot;, &quot;duration&quot;: 1.0, &quot;layer&quot;: 1}" target="{&quot;pitch&quot;: &quot;F3 B-3 C#4 F4&quot;, &quot;duration&quot;: 2.0, &quot;layer&quot;: 1}">
+  <data key="d5">1</data>
+  <data key="d6">False</data>
+</edge>
+</graph></graphml>

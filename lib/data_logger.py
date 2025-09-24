@@ -2,6 +2,7 @@ import csv
 import os
 import datetime
 import json
+from config import SIMULATION
 
 
 class SimulationDataLogger:
@@ -110,11 +111,11 @@ class SimulationDataLogger:
                 edge_data = graph.get_edge_data(u, v)
                 if edge_data:
                     best_edge = min(edge_data.values(), key=lambda x: x.get('length', float('inf')))
-                    distance = best_edge.get('length', 0)
+                    distance = best_edge.get('length', SIMULATION.DEFAULT_EDGE_LENGTH)
                     total_distance += distance
             except:
-                # If edge not found, use estimated distance
-                total_distance += 100  # 100m estimate
+                # If edge not found, use default distance estimate
+                total_distance += SIMULATION.DEFAULT_EDGE_LENGTH  # Use config default
         
         return total_distance
     

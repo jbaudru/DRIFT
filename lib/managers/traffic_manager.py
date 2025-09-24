@@ -40,12 +40,12 @@ class TrafficManager:
             try:
                 lanes = float(data.get('lanes', 1))
                 speed_kph = float(data.get('speed_kph', SIMULATION.DEFAULT_SPEED_KPH))
-                length_m = float(data.get('length', 100))
+                length_m = float(data.get('length', SIMULATION.DEFAULT_EDGE_LENGTH))
             except (TypeError, ValueError):
                 # Fallback to defaults if conversion fails
                 lanes = 1
                 speed_kph = SIMULATION.DEFAULT_SPEED_KPH
-                length_m = 100
+                length_m = SIMULATION.DEFAULT_EDGE_LENGTH
             
             # Theoretical capacity using highway capacity manual principles
             # Base capacity per lane: ~2000 vehicles/hour for urban roads
