@@ -171,7 +171,7 @@ class SimulationConfig:
     SPEED_TOOLTIP: str = "Simulation speed multiplier"
     
     # Selection modes
-    SELECTION_MODES: List[str] = field(default_factory=lambda: ['random', 'activity', 'zone', 'gravity', 'hub'])
+    SELECTION_MODES: List[str] = field(default_factory=lambda: ['random', 'activity', 'zone', 'hub', 'gravity'])
     DEFAULT_SELECTION_MODE: str = 'random'
     
     # Time constants
