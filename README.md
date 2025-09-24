@@ -9,7 +9,7 @@
 
 A mesoscopic traffic simulator designed to balance the fidelity of microscopic modeling with the scalability of macroscopic approaches.
 
-![DRIFT Screenshot](fig/REPORT-ex-graph.png)
+![DRIFT Screenshot](fig/example-gif.gif)
 
 ## Overview
 
@@ -161,14 +161,6 @@ The project includes sample networks in `data/`:
 
 This project is part of ongoing research in transportation simulation. Contributions, issues, and feature requests are welcome.
 
-## Citation
-
-If you use DRIFT in your research, please cite:
-
-```bibtex
-Baudru, J. (2025). DRIFT - A Mesoscopic Traffic Simulator: Technical Report. 
-Transportation Research Laboratory.
-```
 
 ## License
 
