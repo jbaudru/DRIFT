@@ -92,6 +92,13 @@ class SimulationThread(QThread):
                     settings['bpr_beta']
                 )
         
+        # Update hourly probabilities for existing agents
+        if hasattr(self, 'agents') and self.agents and 'hourly_probabilities' in settings:
+            for agent in self.agents:
+                if hasattr(agent, 'hourly_probabilities'):
+                    agent.hourly_probabilities = settings['hourly_probabilities']
+            self.log_message.emit(f"Updated hourly probabilities for {len(self.agents)} agents")
+        
         # Update ST selector parameters if available
         if hasattr(self, 'st_selector') and self.st_selector:
             self.update_st_selector_parameters(settings)
@@ -150,6 +157,11 @@ class SimulationThread(QThread):
             # Create agents based on selection mode
             self.log_message.emit(f"Initializing {self.num_agents} agents with {self.selection_mode} selection...")
             
+            # Get hourly probabilities from settings or use defaults
+            hourly_probabilities = None
+            if self.settings and 'hourly_probabilities' in self.settings:
+                hourly_probabilities = self.settings['hourly_probabilities']
+            
             # Check if we have a pre-computed ST selector
             if self.st_selector is not None:
                 self.log_message.emit("Using pre-computed ST selector model")
@@ -169,22 +181,22 @@ class SimulationThread(QThread):
                     self.agents = []
                     for _ in range(self.num_agents):
                         agent_type = random.choices(agent_types, weights=type_weights)[0]
-                        agent = Agent(self.graph, agent_type=agent_type, st_selector=st_selector, traffic_manager=self.traffic_manager)
+                        agent = Agent(self.graph, agent_type=agent_type, st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities)
                         self.agents.append(agent)
                 elif self.selection_mode == 'gravity':
-                    self.agents = [Agent(self.graph, agent_type='gravity', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                    self.agents = [Agent(self.graph, agent_type='gravity', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                     model_info = st_selector.get_model_info()
                     self.log_message.emit(f"Pre-computed gravity model ready (α={model_info['alpha']}, β={model_info['beta']})")
                 elif self.selection_mode == 'zone':
-                    self.agents = [Agent(self.graph, agent_type='zone', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                    self.agents = [Agent(self.graph, agent_type='zone', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                     zone_info = st_selector.get_zone_info()
                     self.log_message.emit(f"Pre-computed zone model ready with {len(zone_info)} zones")
                 elif self.selection_mode == 'hub':
-                    self.agents = [Agent(self.graph, agent_type='hub', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                    self.agents = [Agent(self.graph, agent_type='hub', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                     self.log_message.emit("Pre-computed hub and spoke model ready")
                 else:
                     # Default to random
-                    self.agents = [Agent(self.graph, agent_type='random', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                    self.agents = [Agent(self.graph, agent_type='random', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 
             elif self.selection_mode == 'activity':
                 st_selector = ActivityBasedSelection(self.graph)
@@ -203,7 +215,7 @@ class SimulationThread(QThread):
                 self.agents = []
                 for _ in range(self.num_agents):
                     agent_type = random.choices(agent_types, weights=type_weights)[0]
-                    agent = Agent(self.graph, agent_type=agent_type, st_selector=st_selector, traffic_manager=self.traffic_manager)
+                    agent = Agent(self.graph, agent_type=agent_type, st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities)
                     self.agents.append(agent)
             
             elif self.selection_mode == 'zone':
@@ -214,7 +226,7 @@ class SimulationThread(QThread):
                     if hasattr(st_selector, 'set_parameters'):
                         st_selector.set_parameters(intra_zone_probability=self.settings['zone_intra_probability'])
                 
-                self.agents = [Agent(self.graph, agent_type='zone', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                self.agents = [Agent(self.graph, agent_type='zone', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 zone_info = st_selector.get_zone_info()
                 self.log_message.emit(f"Zone-based selection initialized with {len(zone_info)} zones")
             
@@ -227,7 +239,7 @@ class SimulationThread(QThread):
                     beta = self.settings.get('gravity_beta', 2.0)
                     st_selector.set_parameters(alpha=alpha, beta=beta)
                 
-                self.agents = [Agent(self.graph, agent_type='gravity', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                self.agents = [Agent(self.graph, agent_type='gravity', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 model_info = st_selector.get_model_info()
                 self.log_message.emit(f"Gravity model initialized (α={model_info['alpha']}, β={model_info['beta']})")
                 
@@ -243,13 +255,13 @@ class SimulationThread(QThread):
                     hub_percentage = self.settings.get('hub_percentage', 0.15)
                     st_selector.set_parameters(hub_trip_probability=hub_trip_prob, hub_percentage=hub_percentage)
                 
-                self.agents = [Agent(self.graph, agent_type='hub', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                self.agents = [Agent(self.graph, agent_type='hub', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 model_info = st_selector.get_model_info()
                 self.log_message.emit(f"Hub-and-spoke model initialized ({model_info['num_hubs']} hubs)")
             
             else:  # random
                 st_selector = RandomSelection(self.graph)
-                self.agents = [Agent(self.graph, agent_type='random', st_selector=st_selector, traffic_manager=self.traffic_manager) for _ in range(self.num_agents)]
+                self.agents = [Agent(self.graph, agent_type='random', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
             
             # Store selector for color mapping - CRITICAL: Ensure this is set correctly
             self.st_selector = st_selector

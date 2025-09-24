@@ -114,13 +114,9 @@ class SettingsTab(QWidget):
         hours_grid = QGridLayout()
         self.hour_probability_spinboxes = {}
         
-        # Default probabilities (higher during rush hours)
-        default_hourly_probs = {
-            0: 0.02, 1: 0.01, 2: 0.01, 3: 0.01, 4: 0.02, 5: 0.05,
-            6: 0.08, 7: 0.12, 8: 0.15, 9: 0.10, 10: 0.08, 11: 0.09,
-            12: 0.10, 13: 0.09, 14: 0.08, 15: 0.10, 16: 0.12, 17: 0.15,
-            18: 0.12, 19: 0.08, 20: 0.06, 21: 0.05, 22: 0.04, 23: 0.03
-        }
+        # Use default probabilities from config
+        from config import MODELS
+        default_hourly_probs = MODELS.DEFAULT_HOURLY_PROBABILITIES
         
         for hour in range(24):
             row = hour // 6

@@ -294,6 +294,29 @@ class ModelConfig:
     DEFAULT_HUB_TRIP_PROBABILITY: float = 0.3
     DEFAULT_HUB_PERCENTAGE: float = 0.1
     
+    # Activity-based model spatial thresholds and ratios
+    ACTIVITY_CENTER_THRESHOLD: float = 0.3  # 30% of radius from center
+    ACTIVITY_MIDDLE_THRESHOLD: float = 0.7  # 70% of radius from center
+    
+    # Activity-based model node size factors and limits
+    ACTIVITY_SIZE_FACTOR: int = 6  # nodes//6 for activity centers
+    ACTIVITY_MAX_SIZE: int = 50
+    BUSINESS_SIZE_FACTOR: int = 5  # nodes//5 for business nodes
+    BUSINESS_MAX_SIZE: int = 80
+    WORK_SIZE_FACTOR: int = 4  # nodes//4 for work nodes
+    WORK_MAX_SIZE: int = 100
+    HOME_SIZE_FACTOR: int = 4  # nodes//4 for home nodes
+    HOME_MAX_SIZE: int = 100
+    DISTRIBUTION_SIZE_FACTOR: int = 10  # nodes//10 for distribution nodes
+    DISTRIBUTION_MAX_SIZE: int = 20
+    
+    # Activity-based model distribution ratios
+    ACTIVITY_CENTER_RATIO: float = 0.8  # 80% center, 20% middle
+    BUSINESS_CENTER_RATIO: float = 0.7  # 70% center, 30% middle
+    WORK_RATIOS: Tuple[float, float, float] = (0.2, 0.4, 0.4)  # center, middle, border
+    HOME_RATIOS: Tuple[float, float, float] = (0.05, 0.35, 0.6)  # center, middle, border
+    DISTRIBUTION_RATIOS: Tuple[float, float] = (0.5, 0.5)  # middle, border
+    
     # Hourly probability distribution (24 hours)
     DEFAULT_HOURLY_PROBABILITIES: Dict[int, float] = field(default_factory=dict)
     

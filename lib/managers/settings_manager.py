@@ -13,36 +13,32 @@ class SimulationConfig:
     """Configuration class for simulation settings"""
     
     def __init__(self):
-        # Default BPR parameters
-        self.bpr_alpha = 0.15
-        self.bpr_beta = 4.0
+        # Import config defaults
+        import sys
+        import os
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        from config import MODELS, NETWORK
         
-        # Default hourly probabilities (rush hour pattern)
-        self.hourly_probabilities = {
-            0: 0.02, 1: 0.01, 2: 0.01, 3: 0.01, 4: 0.02, 5: 0.05,
-            6: 0.08, 7: 0.12, 8: 0.15, 9: 0.10, 10: 0.08, 11: 0.09,
-            12: 0.10, 13: 0.09, 14: 0.08, 15: 0.10, 16: 0.12, 17: 0.15,
-            18: 0.12, 19: 0.08, 20: 0.06, 21: 0.05, 22: 0.04, 23: 0.03
-        }
+        # Default BPR parameters
+        self.bpr_alpha = NETWORK.DEFAULT_BPR_ALPHA
+        self.bpr_beta = NETWORK.DEFAULT_BPR_BETA
+        
+        # Use default hourly probabilities from config
+        self.hourly_probabilities = MODELS.DEFAULT_HOURLY_PROBABILITIES.copy()
         
         # Zone model settings
-        self.zone_intra_probability = 0.6
+        self.zone_intra_probability = MODELS.DEFAULT_ZONE_INTRA_PROBABILITY
         
         # Activity model settings
-        self.agent_type_distributions = {
-            'commuter': 0.4, 
-            'delivery': 0.2, 
-            'leisure': 0.25, 
-            'business': 0.15
-        }
+        self.agent_type_distributions = MODELS.DEFAULT_AGENT_TYPE_DISTRIBUTIONS.copy()
         
         # Gravity model settings
-        self.gravity_alpha = 1.0
-        self.gravity_beta = 2.0
+        self.gravity_alpha = MODELS.DEFAULT_GRAVITY_ALPHA
+        self.gravity_beta = MODELS.DEFAULT_GRAVITY_BETA
         
         # Hub model settings
-        self.hub_trip_probability = 0.7
-        self.hub_percentage = 0.30
+        self.hub_trip_probability = MODELS.DEFAULT_HUB_TRIP_PROBABILITY
+        self.hub_percentage = MODELS.DEFAULT_HUB_PERCENTAGE
 
 
 class SettingsManager:

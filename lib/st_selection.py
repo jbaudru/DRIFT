@@ -6,6 +6,12 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 import multiprocessing as mp
 from functools import partial
 
+# Import configuration
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config import MODELS, SIMULATION
+
 class SourceTargetSelection:
     """
     Base class for source-target selection strategies
@@ -63,12 +69,16 @@ class GravitySelection(SourceTargetSelection):
     p_ij = T_ij / Σ(T_kl) = (S_i * A_j / d_ij^β) / Σ(S_k * A_l / d_kl^β)
     """
     
-    def __init__(self, graph):
+    def __init__(self, graph, config=None):
         super().__init__(graph)
         
-        # Voorhees gravity model parameters
-        self.beta = 2.0   # Distance decay parameter
-        self.distance_cutoff = None  # Maximum distance to consider (None = no limit)
+        # Use provided config or fall back to default
+        self.config = config if config is not None else MODELS
+        
+        # Voorhees gravity model parameters (configurable)
+        self.beta = getattr(self.config, 'DEFAULT_GRAVITY_BETA', 2.0)   # Distance decay parameter
+        self.alpha = getattr(self.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)  # Attraction scaling parameter
+        self.distance_cutoff = getattr(self.config, 'GRAVITY_DISTANCE_CUTOFF', None)  # Maximum distance to consider (None = no limit)
         
         # Performance optimization: cache computed probabilities
         self._probability_cache = {}
@@ -651,12 +661,15 @@ class HubAndSpokeSelection(SourceTargetSelection):
     Reflects real-world traffic concentration at major intersections/centers.
     """
     
-    def __init__(self, graph):
+    def __init__(self, graph, config=None):
         super().__init__(graph)
         
-        # Hub-and-spoke parameters (set before identifying hubs)
-        self.hub_trip_probability = 0.7  # 70% of trips involve hubs
-        self.hub_percentage = 0.30 # Top 15% of nodes are considered hubs
+        # Use provided config or fall back to default
+        self.config = config if config is not None else MODELS
+        
+        # Hub-and-spoke parameters (configurable)
+        self.hub_trip_probability = getattr(self.config, 'DEFAULT_HUB_TRIP_PROBABILITY', 0.3)  # % of trips involve hubs
+        self.hub_percentage = getattr(self.config, 'DEFAULT_HUB_PERCENTAGE', 0.1)  # % of nodes considered hubs
         
         # Identify major hubs based on centrality
         self._identify_hubs(graph)
@@ -827,8 +840,34 @@ class ActivityBasedSelection(SourceTargetSelection):
     Activity-based source-target selection model for different agent types
     """
     
-    def __init__(self, graph):
+    def __init__(self, graph, config=None):
         super().__init__(graph)
+        
+        # Use provided config or fall back to default
+        self.config = config if config is not None else MODELS
+        
+        # Store zone thresholds as configurable parameters
+        self.center_threshold = getattr(self.config, 'ACTIVITY_CENTER_THRESHOLD', 0.3)  # 30% of radius from center
+        self.middle_threshold = getattr(self.config, 'ACTIVITY_MIDDLE_THRESHOLD', 0.7)  # 70% of radius from center
+        
+        # Store node size factors as configurable parameters
+        self.activity_size_factor = getattr(self.config, 'ACTIVITY_SIZE_FACTOR', 6)  # nodes//6
+        self.activity_max_size = getattr(self.config, 'ACTIVITY_MAX_SIZE', 50)
+        self.business_size_factor = getattr(self.config, 'BUSINESS_SIZE_FACTOR', 5)  # nodes//5  
+        self.business_max_size = getattr(self.config, 'BUSINESS_MAX_SIZE', 80)
+        self.work_size_factor = getattr(self.config, 'WORK_SIZE_FACTOR', 4)  # nodes//4
+        self.work_max_size = getattr(self.config, 'WORK_MAX_SIZE', 100)
+        self.home_size_factor = getattr(self.config, 'HOME_SIZE_FACTOR', 4)  # nodes//4
+        self.home_max_size = getattr(self.config, 'HOME_MAX_SIZE', 100)
+        self.distribution_size_factor = getattr(self.config, 'DISTRIBUTION_SIZE_FACTOR', 10)  # nodes//10
+        self.distribution_max_size = getattr(self.config, 'DISTRIBUTION_MAX_SIZE', 20)
+        
+        # Store distribution ratios as configurable parameters
+        self.activity_center_ratio = getattr(self.config, 'ACTIVITY_CENTER_RATIO', 0.8)  # 80% center, 20% middle
+        self.business_center_ratio = getattr(self.config, 'BUSINESS_CENTER_RATIO', 0.7)  # 70% center, 30% middle
+        self.work_ratios = getattr(self.config, 'WORK_RATIOS', (0.2, 0.4, 0.4))  # 20% center, 40% middle, 40% border
+        self.home_ratios = getattr(self.config, 'HOME_RATIOS', (0.05, 0.35, 0.6))  # 5% center, 35% middle, 60% border
+        self.distribution_ratios = getattr(self.config, 'DISTRIBUTION_RATIOS', (0.5, 0.5))  # 50% middle, 50% border
         
         # Get node positions and calculate spatial distribution
         self._distribute_nodes_spatially(graph)
@@ -861,13 +900,10 @@ class ActivityBasedSelection(SourceTargetSelection):
         # Sort nodes by distance from center
         nodes_by_distance = sorted(self.nodes, key=lambda x: normalized_distances[x])
         
-        # Define thresholds for different zones
-        center_threshold = 0.3  # 30% of radius from center
-        middle_threshold = 0.7  # 70% of radius from center
-        
-        center_nodes = [n for n in self.nodes if normalized_distances[n] <= center_threshold]
-        middle_nodes = [n for n in self.nodes if center_threshold < normalized_distances[n] <= middle_threshold]
-        border_nodes = [n for n in self.nodes if normalized_distances[n] > middle_threshold]
+        # Define thresholds for different zones (now configurable)
+        center_nodes = [n for n in self.nodes if normalized_distances[n] <= self.center_threshold]
+        middle_nodes = [n for n in self.nodes if self.center_threshold < normalized_distances[n] <= self.middle_threshold]
+        border_nodes = [n for n in self.nodes if normalized_distances[n] > self.middle_threshold]
         
         # Distribute node types based on urban planning principles
         self._assign_activity_centers(center_nodes, middle_nodes, border_nodes)
@@ -878,21 +914,32 @@ class ActivityBasedSelection(SourceTargetSelection):
     
     def _assign_activity_centers(self, center_nodes, middle_nodes, border_nodes):
         """Activity centers: mostly in center, some in middle"""
-        activity_size = min(len(self.nodes)//6, 50)
+        activity_size = min(len(self.nodes)//self.activity_size_factor, self.activity_max_size)
         
-        # 80% from center, 20% from middle
-        center_count = min(int(activity_size * 0.8), len(center_nodes))
+        # Use configurable ratio
+        center_count = min(int(activity_size * self.activity_center_ratio), len(center_nodes))
         middle_count = min(activity_size - center_count, len(middle_nodes))
         
-        self.activity_centers = (random.sample(center_nodes, center_count) + 
-                               random.sample(middle_nodes, middle_count))
+        # Ensure we have at least some activity centers
+        activity_centers_list = []
+        if center_count > 0:
+            activity_centers_list.extend(random.sample(center_nodes, center_count))
+        if middle_count > 0:
+            activity_centers_list.extend(random.sample(middle_nodes, middle_count))
+        
+        # If no activity centers assigned, fallback to any available nodes
+        if not activity_centers_list:
+            fallback_nodes = random.sample(self.nodes, min(3, len(self.nodes)))
+            activity_centers_list = fallback_nodes
+        
+        self.activity_centers = activity_centers_list
     
     def _assign_business_nodes(self, center_nodes, middle_nodes, border_nodes):
         """Business nodes: mostly in center, some in middle"""
-        business_size = min(len(self.nodes)//5, 80)
+        business_size = min(len(self.nodes)//self.business_size_factor, self.business_max_size)
         
-        # 70% from center, 30% from middle
-        center_count = min(int(business_size * 0.7), len(center_nodes))
+        # Use configurable ratio
+        center_count = min(int(business_size * self.business_center_ratio), len(center_nodes))
         middle_count = min(business_size - center_count, len(middle_nodes))
         
         # Remove already assigned activity centers from available center nodes
@@ -902,16 +949,32 @@ class ActivityBasedSelection(SourceTargetSelection):
         center_count = min(center_count, len(available_center))
         middle_count = min(middle_count, len(available_middle))
         
-        self.business_nodes = (random.sample(available_center, center_count) + 
-                             random.sample(available_middle, middle_count))
+        # Ensure we have at least some business nodes
+        business_nodes_list = []
+        if center_count > 0:
+            business_nodes_list.extend(random.sample(available_center, center_count))
+        if middle_count > 0:
+            business_nodes_list.extend(random.sample(available_middle, middle_count))
+        
+        # If no business nodes assigned, fallback to any available nodes
+        if not business_nodes_list:
+            fallback_nodes = [n for n in self.nodes if n not in self.activity_centers]
+            if fallback_nodes:
+                business_nodes_list = random.sample(fallback_nodes, min(5, len(fallback_nodes)))
+            else:
+                # Last resort: use any nodes
+                business_nodes_list = random.sample(self.nodes, min(5, len(self.nodes)))
+        
+        self.business_nodes = business_nodes_list
     
     def _assign_work_nodes(self, center_nodes, middle_nodes, border_nodes):
         """Work nodes: some in center, distributed in middle and border"""
-        work_size = min(len(self.nodes)//4, 100)
+        work_size = min(len(self.nodes)//self.work_size_factor, self.work_max_size)
         
-        # 20% center, 40% middle, 40% border
-        center_count = int(work_size * 0.2)
-        middle_count = int(work_size * 0.4)
+        # Use configurable ratios (center, middle, border)
+        center_ratio, middle_ratio, border_ratio = self.work_ratios
+        center_count = int(work_size * center_ratio)
+        middle_count = int(work_size * middle_ratio)
         border_count = work_size - center_count - middle_count
         
         # Remove already assigned nodes
@@ -924,17 +987,34 @@ class ActivityBasedSelection(SourceTargetSelection):
         middle_count = min(middle_count, len(available_middle))
         border_count = min(border_count, len(available_border))
         
-        self.work_nodes = (random.sample(available_center, center_count) + 
-                          random.sample(available_middle, middle_count) +
-                          random.sample(available_border, border_count))
+        # Build work nodes list
+        work_nodes_list = []
+        if center_count > 0:
+            work_nodes_list.extend(random.sample(available_center, center_count))
+        if middle_count > 0:
+            work_nodes_list.extend(random.sample(available_middle, middle_count))
+        if border_count > 0:
+            work_nodes_list.extend(random.sample(available_border, border_count))
+        
+        # If no work nodes assigned, fallback to any available nodes
+        if not work_nodes_list:
+            fallback_nodes = [n for n in self.nodes if n not in assigned_nodes]
+            if fallback_nodes:
+                work_nodes_list = random.sample(fallback_nodes, min(5, len(fallback_nodes)))
+            else:
+                # Last resort: use any nodes
+                work_nodes_list = random.sample(self.nodes, min(5, len(self.nodes)))
+        
+        self.work_nodes = work_nodes_list
     
     def _assign_home_nodes(self, center_nodes, middle_nodes, border_nodes):
         """Home nodes: rare in center, mostly in middle and border"""
-        home_size = min(len(self.nodes)//4, 100)
+        home_size = min(len(self.nodes)//self.home_size_factor, self.home_max_size)
         
-        # 5% center, 35% middle, 60% border
-        center_count = int(home_size * 0.05)
-        middle_count = int(home_size * 0.35)
+        # Use configurable ratios (center, middle, border)
+        center_ratio, middle_ratio, border_ratio = self.home_ratios
+        center_count = int(home_size * center_ratio)
+        middle_count = int(home_size * middle_ratio)
         border_count = home_size - center_count - middle_count
         
         # Remove already assigned nodes
@@ -947,16 +1027,33 @@ class ActivityBasedSelection(SourceTargetSelection):
         middle_count = min(middle_count, len(available_middle))
         border_count = min(border_count, len(available_border))
         
-        self.home_nodes = (random.sample(available_center, center_count) + 
-                          random.sample(available_middle, middle_count) +
-                          random.sample(available_border, border_count))
+        # Build home nodes list
+        home_nodes_list = []
+        if center_count > 0:
+            home_nodes_list.extend(random.sample(available_center, center_count))
+        if middle_count > 0:
+            home_nodes_list.extend(random.sample(available_middle, middle_count))
+        if border_count > 0:
+            home_nodes_list.extend(random.sample(available_border, border_count))
+        
+        # If no home nodes assigned, fallback to any available nodes
+        if not home_nodes_list:
+            fallback_nodes = [n for n in self.nodes if n not in assigned_nodes]
+            if fallback_nodes:
+                home_nodes_list = random.sample(fallback_nodes, min(5, len(fallback_nodes)))
+            else:
+                # Last resort: use any nodes
+                home_nodes_list = random.sample(self.nodes, min(5, len(self.nodes)))
+        
+        self.home_nodes = home_nodes_list
     
     def _assign_distribution_nodes(self, center_nodes, middle_nodes, border_nodes):
         """Distribution nodes: 50% middle, 50% border"""
-        distribution_size = min(len(self.nodes)//10, 20)
+        distribution_size = min(len(self.nodes)//self.distribution_size_factor, self.distribution_max_size)
         
-        # 50% middle, 50% border
-        middle_count = distribution_size // 2
+        # Use configurable ratios (middle, border)
+        middle_ratio, border_ratio = self.distribution_ratios
+        middle_count = int(distribution_size * middle_ratio)
         border_count = distribution_size - middle_count
         
         # Remove already assigned nodes
@@ -968,8 +1065,23 @@ class ActivityBasedSelection(SourceTargetSelection):
         middle_count = min(middle_count, len(available_middle))
         border_count = min(border_count, len(available_border))
         
-        self.distribution_nodes = (random.sample(available_middle, middle_count) + 
-                                 random.sample(available_border, border_count))
+        # Build distribution nodes list
+        distribution_nodes_list = []
+        if middle_count > 0:
+            distribution_nodes_list.extend(random.sample(available_middle, middle_count))
+        if border_count > 0:
+            distribution_nodes_list.extend(random.sample(available_border, border_count))
+        
+        # If no distribution nodes assigned, fallback to any available nodes
+        if not distribution_nodes_list:
+            fallback_nodes = [n for n in self.nodes if n not in assigned_nodes]
+            if fallback_nodes:
+                distribution_nodes_list = random.sample(fallback_nodes, min(3, len(fallback_nodes)))
+            else:
+                # Last resort: use any nodes
+                distribution_nodes_list = random.sample(self.nodes, min(3, len(self.nodes)))
+        
+        self.distribution_nodes = distribution_nodes_list
     
     def get_source_target(self, agent_type='random', current_location=None, trip_count=0):
         """
@@ -998,81 +1110,124 @@ class ActivityBasedSelection(SourceTargetSelection):
     def _commuter_pattern(self, current_location, trip_count):
         """Commuters alternate between home and work"""
         if current_location is None:
-            # First trip: start from home
-            source = random.choice(self.home_nodes)
-            target = random.choice(self.work_nodes)
+            # First trip: start from home, fallback to any node if home_nodes is empty
+            if self.home_nodes:
+                source = random.choice(self.home_nodes)
+            else:
+                source = random.choice(self.nodes)
+                
+            if self.work_nodes:
+                target = random.choice(self.work_nodes)
+            else:
+                target = random.choice(self.nodes)
         else:
             source = current_location
             # Alternate between home and work based on trip count
             if trip_count % 2 == 0:
                 # Even trips: go to work (or stay at work area)
-                target = random.choice(self.work_nodes)
+                if self.work_nodes:
+                    target = random.choice(self.work_nodes)
+                else:
+                    target = random.choice(self.nodes)
             else:
                 # Odd trips: go home
-                target = random.choice(self.home_nodes)
+                if self.home_nodes:
+                    target = random.choice(self.home_nodes)
+                else:
+                    target = random.choice(self.nodes)
         
         return source, target
     
     def _delivery_pattern(self, current_location):
         """Delivery agents prefer distribution centers and varied destinations"""
         if current_location is None:
-            source = random.choice(self.distribution_nodes)
+            # Fallback to any node if distribution_nodes is empty
+            if self.distribution_nodes:
+                source = random.choice(self.distribution_nodes)
+            else:
+                source = random.choice(self.nodes)
         else:
             source = current_location
         
         # 70% chance to go to/from distribution centers, 30% to other locations
-        if random.random() < 0.7:
+        if random.random() < 0.7 and self.distribution_nodes:
             target = random.choice(self.distribution_nodes)
         else:
             target = random.choice(self.nodes)
         
         # Ensure source != target
-        while target == source:
+        attempts = 0
+        while target == source and attempts < 100:  # Prevent infinite loop
+            attempts += 1
             target = random.choice(self.nodes)
+            
+            # If we have only one node total, break the loop
+            if len(self.nodes) <= 1:
+                break
         
         return source, target
     
     def _leisure_pattern(self, current_location):
         """Leisure agents have varied destinations with preference for activity centers"""
         if current_location is None:
-            source = random.choice(self.home_nodes)
+            # Fallback to any node if home_nodes is empty
+            if self.home_nodes:
+                source = random.choice(self.home_nodes)
+            else:
+                source = random.choice(self.nodes)
         else:
             source = current_location
         
         # 60% chance to go to activity centers, 40% to random locations
-        if random.random() < 0.6:
+        if random.random() < 0.6 and self.activity_centers:
             target = random.choice(self.activity_centers)
         else:
             target = random.choice(self.nodes)
         
         # Ensure source != target
-        while target == source:
-            if random.random() < 0.6:
+        attempts = 0
+        while target == source and attempts < 100:  # Prevent infinite loop
+            attempts += 1
+            if random.random() < 0.6 and self.activity_centers:
                 target = random.choice(self.activity_centers)
             else:
                 target = random.choice(self.nodes)
+            
+            # If we have only one node total, break the loop
+            if len(self.nodes) <= 1:
+                break
         
         return source, target
     
     def _business_pattern(self, current_location):
         """Business agents focus on major business nodes"""
         if current_location is None:
-            source = random.choice(self.business_nodes)
+            # Fallback to any node if business_nodes is empty
+            if self.business_nodes:
+                source = random.choice(self.business_nodes)
+            else:
+                source = random.choice(self.nodes)
         else:
             source = current_location
         
         # 80% chance to go to business nodes, 20% to other locations
-        if random.random() < 0.8:
+        if random.random() < 0.8 and self.business_nodes:
             target = random.choice(self.business_nodes)
         else:
             target = random.choice(self.nodes)
         
         # Ensure source != target
-        while target == source:
-            if random.random() < 0.8:
+        attempts = 0
+        while target == source and attempts < 100:  # Prevent infinite loop
+            attempts += 1
+            if random.random() < 0.8 and self.business_nodes:
                 target = random.choice(self.business_nodes)
             else:
                 target = random.choice(self.nodes)
+            
+            # If we have only one node total, break the loop
+            if len(self.nodes) <= 1:
+                break
         
         return source, target
     
@@ -1084,8 +1239,14 @@ class ActivityBasedSelection(SourceTargetSelection):
             source = current_location
         
         target = random.choice(self.nodes)
-        while target == source:
+        attempts = 0
+        while target == source and attempts < 100:  # Prevent infinite loop
+            attempts += 1
             target = random.choice(self.nodes)
+            
+            # If we have only one node total, break the loop
+            if len(self.nodes) <= 1:
+                break
         
         return source, target
     
@@ -1114,14 +1275,21 @@ class ZoneBasedSelection(SourceTargetSelection):
     Divides network into 3x3 grid with 60% intra-zone and 40% inter-zone trips
     """
     
-    def __init__(self, graph):
+    def __init__(self, graph, config=None):
         super().__init__(graph)
         
-        # Create 3x3 zone grid
+        # Use provided config or fall back to default
+        self.config = config if config is not None else MODELS
+        
+        # Store configurable parameters
+        self.intra_zone_probability = getattr(self.config, 'DEFAULT_ZONE_INTRA_PROBABILITY', 0.7)
+        self.grid_size = getattr(self.config, 'ZONE_GRID_SIZE', 3)  # 3x3 grid by default
+        
+        # Create zone grid
         self._create_zone_grid(graph)
     
     def _create_zone_grid(self, graph):
-        """Create a 3x3 grid of zones and assign nodes to zones"""
+        """Create a configurable grid of zones and assign nodes to zones"""
         # Get all node positions
         node_positions = {}
         for node_id in self.nodes:
@@ -1134,29 +1302,26 @@ class ZoneBasedSelection(SourceTargetSelection):
         min_x, max_x = min(x_coords), max(x_coords)
         min_y, max_y = min(y_coords), max(y_coords)
         
-        # Create 3x3 grid boundaries
-        x_step = (max_x - min_x) / 3
-        y_step = (max_y - min_y) / 3
+        # Create configurable grid boundaries
+        x_step = (max_x - min_x) / self.grid_size
+        y_step = (max_y - min_y) / self.grid_size
         
-        # Initialize zones (3x3 = 9 zones)
+        # Initialize zones
         self.zones = {}
         self.node_to_zone = {}
         
-        # Zone-based parameters (configurable)
-        self.intra_zone_probability = 0.6  # 60% default for intra-zone trips
-        
-        for i in range(3):
-            for j in range(3):
-                zone_id = i * 3 + j  # Zone IDs 0-8
+        for i in range(self.grid_size):
+            for j in range(self.grid_size):
+                zone_id = i * self.grid_size + j
                 self.zones[zone_id] = []
         
         # Assign nodes to zones
         for node_id, pos in node_positions.items():
             # Determine which grid cell this node belongs to
-            x_grid = min(2, int((pos[0] - min_x) / x_step))  # 0, 1, or 2
-            y_grid = min(2, int((pos[1] - min_y) / y_step))  # 0, 1, or 2
+            x_grid = min(self.grid_size - 1, int((pos[0] - min_x) / x_step))
+            y_grid = min(self.grid_size - 1, int((pos[1] - min_y) / y_step))
             
-            zone_id = x_grid * 3 + y_grid
+            zone_id = x_grid * self.grid_size + y_grid
             self.zones[zone_id].append(node_id)
             self.node_to_zone[node_id] = zone_id
         

@@ -12,7 +12,7 @@ from config import SIMULATION
 class Agent:
     _next_id = 1  # Class variable to generate unique IDs
     
-    def __init__(self, graph, agent_type='random', st_selector=None, traffic_manager=None):
+    def __init__(self, graph, agent_type='random', st_selector=None, traffic_manager=None, hourly_probabilities=None):
         self.id = Agent._next_id  # Assign unique ID
         Agent._next_id += 1
         
@@ -26,6 +26,10 @@ class Agent:
         self.traffic_manager = traffic_manager
         self.trip_count = 0
         self.current_edge_key = None  # Track current edge for traffic management
+        
+        # Use provided hourly probabilities or fall back to config defaults
+        from config import MODELS
+        self.hourly_probabilities = hourly_probabilities if hourly_probabilities is not None else MODELS.DEFAULT_HOURLY_PROBABILITIES
         
         # Position interpolation for smooth movement
         self.position_history = deque(maxlen=3)  # Keep last 3 positions for smoothing
@@ -230,62 +234,16 @@ class Agent:
         """
         Calculate probability of starting a trip based on time of day
         Returns probability between 0 and 1
-        Based on real departure time distribution
+        Uses user-configured hourly probabilities from settings
         """
         # Convert simulation time to display time (add hours to start at configured time)
         # This matches the time shown in the simulation window
         display_time = simulation_time + SIMULATION.SIMULATION_START_OFFSET  # seconds offset
-        hour_of_day = (display_time / SIMULATION.SECONDS_PER_HOUR) % 24
+        hour_of_day = int((display_time / SIMULATION.SECONDS_PER_HOUR) % 24)
         
-        # Define travel probability curve based on the provided distribution
-        # Significantly increased all probabilities to make agents much more active
-        if hour_of_day < 1:
-            return 0.12  # Increased from 0.04
-        elif 1 <= hour_of_day < 2:
-            return 0.08  # Increased from 0.02
-        elif 2 <= hour_of_day < 3:
-            return 0.08  # Increased from 0.02
-        elif 3 <= hour_of_day < 4:
-            return 0.08  # Increased from 0.02
-        elif 4 <= hour_of_day < 5:
-            return 0.12  # Increased from 0.03
-        elif 5 <= hour_of_day < 6:
-            return 0.25  # Increased from 0.08
-        elif 6 <= hour_of_day < 7:
-            return 0.45  # Increased from 0.22
-        elif 7 <= hour_of_day < 8:
-            return 0.80  # Increased from 0.50 - Morning peak start
-        elif 8 <= hour_of_day < 9:
-            return 0.95  # Increased from 0.65 - Morning peak
-        elif 9 <= hour_of_day < 10:
-            return 0.65  # Increased from 0.35
-        elif 10 <= hour_of_day < 11:
-            return 0.60  # Increased from 0.30
-        elif 11 <= hour_of_day < 12:
-            return 0.65  # Increased from 0.35
-        elif 12 <= hour_of_day < 13:
-            return 0.75  # Increased from 0.42 - Lunch peak
-        elif 13 <= hour_of_day < 14:
-            return 0.65  # Increased from 0.35
-        elif 14 <= hour_of_day < 15:
-            return 0.62  # Increased from 0.32
-        elif 15 <= hour_of_day < 16:
-            return 0.65  # Increased from 0.35
-        elif 16 <= hour_of_day < 17:
-            return 0.75  # Increased from 0.42
-        elif 17 <= hour_of_day < 18:
-            return 0.90  # Increased from 0.55 - Evening peak
-        elif 18 <= hour_of_day < 19:
-            return 0.85  # Increased from 0.50 - Evening peak continuation
-        elif 19 <= hour_of_day < 20:
-            return 0.65  # Increased from 0.35
-        elif 20 <= hour_of_day < 21:
-            return 0.50  # Increased from 0.22
-        elif 21 <= hour_of_day < 22:
-            return 0.35  # Increased from 0.15
-        elif 22 <= hour_of_day < 23:
-            return 0.25  # Increased from 0.10
-        elif 23 <= hour_of_day < 24:
-            return 0.18  # Increased from 0.06
-        else:
-            return 0.08  # Default fallback
+        # Use the configured hourly probabilities
+        base_probability = self.hourly_probabilities.get(hour_of_day, 0.05)  # Default fallback
+        
+        # Scale up the probabilities to make agents more active (multiply by 4)
+        # This maintains the relative patterns while increasing overall activity
+        return base_probability * 4.0
