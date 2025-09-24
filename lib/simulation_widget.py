@@ -514,7 +514,7 @@ class SimulationWidget(QWidget):
         y_coords = [pos[1] for pos in self.cached_node_positions.values()]
         network_width = max(x_coords) - min(x_coords)
         network_height = max(y_coords) - min(y_coords)
-        base_radius = min(network_width, network_height) * 0.050  # Much larger for better visibility
+        base_radius = min(network_width, network_height) * 0.005  # Reduced size for better visibility
         
         print(f"DEBUG: Network size: {network_width:.2f} x {network_height:.2f}, base_radius: {base_radius:.2f}")
         
@@ -536,9 +536,9 @@ class SimulationWidget(QWidget):
         
         for i, (node_id, attraction) in enumerate(sorted_attractions[:top_count]):
             if node_id in self.cached_node_positions:
-                # Use attraction for circle size (destination attractiveness)
+                # Use attraction for circle size (destination attractiveness) - smaller scaling
                 attraction_ratio = (attraction - min_attraction) / attraction_range
-                radius = base_radius * (2.0 + attraction_ratio * 3.0)  # Much bigger size scaling
+                radius = base_radius * (0.8 + attraction_ratio * 1.2)  # Smaller size scaling
                 
                 # More distinct colors based on attraction level
                 if attraction_ratio > 0.8:

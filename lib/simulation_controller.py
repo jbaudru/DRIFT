@@ -59,14 +59,25 @@ class SimulationController:
             'selection_mode': selection_mode
         }
         
-        # Check if model computation is needed (for complex models)
-        needs_model_computation = selection_mode in ["Gravity", "Zone-Based", "Hub and Spoke"]
+        # Check if we already have a computed selector in the simulation widget
+        simulation_widget = getattr(self.main_window, 'simulation_widget', None)
+        has_existing_selector = (simulation_widget and 
+                               simulation_widget.st_selector is not None and 
+                               simulation_widget.selection_mode == selection_mode.lower())
         
-        if needs_model_computation:
-            self._start_model_computation()
+        if has_existing_selector:
+            # Use the existing selector - no need to recompute
+            self.main_window.add_log_message(f"Using existing {selection_mode} model...")
+            self._start_simulation_with_existing_model(simulation_widget.st_selector)
         else:
-            # Simple models can start directly
-            self._start_simulation_with_parameters()
+            # Check if model computation is needed (for complex models)
+            needs_model_computation = selection_mode in ["Gravity", "Zone-Based", "Hub and Spoke"]
+            
+            if needs_model_computation:
+                self._start_model_computation()
+            else:
+                # Simple models can start directly
+                self._start_simulation_with_parameters()
     
     def _start_model_computation(self):
         """Start model computation in a separate thread with loading spinner"""
@@ -209,6 +220,35 @@ class SimulationController:
         )
         
         # Set the pre-computed model
+        self.simulation_thread.st_selector = st_selector
+        
+        self._setup_and_start_simulation(params)
+    
+    def _start_simulation_with_existing_model(self, st_selector):
+        """Start simulation with an existing pre-computed model (avoids recomputation)"""
+        params = self.pending_simulation_params
+        self.main_window.add_log_message("Starting simulation with existing model...")
+        
+        # Reset simulation state
+        self.current_simulation_time = 0.0
+        self.main_window.status_manager.set_simulation_start_time()
+        self.is_paused = False
+        
+        # Clear previous data
+        self.main_window.completed_trips = []
+        self.main_window.last_plot_update_trip_count = 0
+        self.main_window.trips_table.setRowCount(0)
+        self.main_window.statistics_manager.clear_statistics()
+        
+        # Create simulation thread (without st_selector parameter)
+        self.simulation_thread = SimulationThread(
+            graph=self.main_window.graph,
+            num_agents=params['num_agents'],
+            selection_mode=params['selection_mode'],
+            duration_hours=params['duration_hours']
+        )
+        
+        # Set the existing pre-computed model
         self.simulation_thread.st_selector = st_selector
         
         self._setup_and_start_simulation(params)

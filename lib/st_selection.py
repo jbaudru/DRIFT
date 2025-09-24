@@ -52,7 +52,7 @@ class RandomSelection(SourceTargetSelection):
 
 class GravitySelection(SourceTargetSelection):
     """
-    Gravity Model for source-target selection based on Voorhees (1956) transportation planning principles.
+    Simplified Gravity Model for source-target selection based on Voorhees (1956) transportation planning principles.
     
     Uses the Voorhees gravity formula:
     T_ij = K * (S_i * A_j) / d_ij^β
@@ -80,34 +80,217 @@ class GravitySelection(SourceTargetSelection):
         self.alpha = alpha if alpha is not None else getattr(self.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)  # Attraction scaling parameter
         self.distance_cutoff = getattr(self.config, 'GRAVITY_DISTANCE_CUTOFF', None)  # Maximum distance to consider (None = no limit)
         
-        # Performance optimization: cache computed probabilities
-        self._probability_cache = {}
+        # Simplified caching
+        self.size_variables = {}
+        self.attraction_variables = {}
+        self.distances = {}
         self._cache_valid = False
         
-        # Calculate size and attraction variables
-        self._calculate_size_attraction_variables(graph)
+        # Initialize the model with a progress indicator
+        self._initialize_model(graph)
+    
+    @classmethod
+    def create_with_progress(cls, graph, config=None, alpha=None, beta=None, progress_callback=None):
+        """
+        Factory method to create GravitySelection with external progress callback
+        Useful for showing loading spinners from external components
         
-        # Pre-compute distances efficiently
-        self._precompute_distances_optimized(graph)
+        Args:
+            graph: NetworkX graph
+            config: Configuration object
+            alpha: Alpha parameter  
+            beta: Beta parameter
+            progress_callback: Function to call with progress updates (message)
         
-        # Pre-compute probability matrix for performance
-        self._precompute_probability_matrix()
+        Returns:
+            GravitySelection instance
+        """
+        instance = cls.__new__(cls)
+        SourceTargetSelection.__init__(instance, graph)
+        
+        # Store configuration
+        instance.config = config if config is not None else MODELS
+        instance.beta = beta if beta is not None else getattr(instance.config, 'DEFAULT_GRAVITY_BETA', 2.0)
+        instance.alpha = alpha if alpha is not None else getattr(instance.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)
+        instance.distance_cutoff = getattr(instance.config, 'GRAVITY_DISTANCE_CUTOFF', None)
+        
+        # Initialize containers
+        instance.size_variables = {}
+        instance.attraction_variables = {}
+        instance.distances = {}
+        instance._cache_valid = False
+        
+        # Initialize with progress callback
+        instance._initialize_model_with_progress(graph, progress_callback)
+        
+        return instance
+    
+    def _initialize_model_with_progress(self, graph, progress_callback=None):
+        """Initialize model with external progress callback"""
+        if progress_callback:
+            progress_callback("Initializing gravity model...")
+        
+        print("Initializing Voorhees Gravity Model...")
+        
+        try:
+            # Step 1: Calculate centrality-based variables
+            if progress_callback:
+                progress_callback("Computing node centralities...")
+            print("  Step 1/3: Computing node centralities...")
+            self._calculate_size_attraction_variables(graph)
+            
+            # Step 2: Compute distances
+            if progress_callback:
+                progress_callback("Computing distances...")
+            print("  Step 2/3: Computing distances...")
+            self._compute_distances(graph)
+            
+            # Step 3: Mark as ready
+            if progress_callback:
+                progress_callback("Model ready!")
+            print("  Step 3/3: Model ready!")
+            self._cache_valid = True
+            
+            print("✓ Voorhees Gravity Model initialized successfully")
+            
+        except Exception as e:
+            print(f"✗ Error initializing gravity model: {e}")
+            raise
+    
+    
+    def _initialize_model(self, graph):
+        """Initialize the gravity model with progress tracking"""
+        print("Initializing Voorhees Gravity Model...")
+        
+        try:
+            # Show loading spinner if we're in a GUI context
+            self._show_loading("Initializing gravity model...")
+            
+            # Step 1: Calculate centrality-based variables
+            print("  Step 1/3: Computing node centralities...")
+            self._update_loading_progress("Computing node centralities...", 1, 3)
+            self._calculate_size_attraction_variables(graph)
+            
+            # Step 2: Compute distances
+            print("  Step 2/3: Computing distances...")
+            self._update_loading_progress("Computing distances...", 2, 3)
+            self._compute_distances(graph)
+            
+            # Step 3: Mark as ready
+            print("  Step 3/3: Model ready!")
+            self._update_loading_progress("Finalizing model...", 3, 3)
+            self._cache_valid = True
+            
+            self._hide_loading()
+            print("✓ Voorhees Gravity Model initialized successfully")
+            
+        except Exception as e:
+            self._hide_loading()
+            print(f"✗ Error initializing gravity model: {e}")
+            raise
+    
+    def _update_loading_progress(self, message, current_step, total_steps):
+        """Update loading progress if available"""
+        try:
+            from PyQt5.QtWidgets import QApplication
+            app = QApplication.instance()
+            if app:
+                for widget in app.topLevelWidgets():
+                    if hasattr(widget, 'simulation_widget') and hasattr(widget.simulation_widget, 'parent'):
+                        sim_tab = widget.simulation_widget.parent()
+                        if hasattr(sim_tab, 'loading_spinner') and hasattr(sim_tab.loading_spinner, 'update_text'):
+                            progress_percent = int((current_step / total_steps) * 100)
+                            sim_tab.loading_spinner.update_text(f"{message} ({progress_percent}%)")
+                            app.processEvents()  # Allow GUI updates
+                            return
+                        elif hasattr(widget, 'loading_spinner') and hasattr(widget.loading_spinner, 'update_text'):
+                            progress_percent = int((current_step / total_steps) * 100)
+                            widget.loading_spinner.update_text(f"{message} ({progress_percent}%)")
+                            app.processEvents()  # Allow GUI updates
+                            return
+                
+                # Fallback: search all widgets
+                for widget in app.allWidgets():
+                    if hasattr(widget, 'loading_spinner') and hasattr(widget.loading_spinner, 'update_text'):
+                        progress_percent = int((current_step / total_steps) * 100)
+                        widget.loading_spinner.update_text(f"{message} ({progress_percent}%)")
+                        app.processEvents()  # Allow GUI updates
+                        break
+        except:
+            pass
+    
+    def _show_loading(self, message):
+        """Show loading spinner if available"""
+        try:
+            # Try to find the simulation widget with loading spinner
+            from PyQt5.QtWidgets import QApplication
+            app = QApplication.instance()
+            if app:
+                # Look for main window first
+                main_window = None
+                for widget in app.topLevelWidgets():
+                    if hasattr(widget, 'simulation_widget') and hasattr(widget.simulation_widget, 'parent'):
+                        # Found main window
+                        main_window = widget
+                        break
+                
+                if main_window and hasattr(main_window, 'simulation_widget'):
+                    # Try to find loading spinner in the simulation widget's parent (simulation tab)
+                    sim_tab = main_window.simulation_widget.parent()
+                    if hasattr(sim_tab, 'loading_spinner'):
+                        sim_tab.loading_spinner.show_spinner(message)
+                        return
+                    elif hasattr(main_window, 'loading_spinner'):
+                        main_window.loading_spinner.show_spinner(message)
+                        return
+                
+                # Fallback: search all widgets
+                for widget in app.allWidgets():
+                    if hasattr(widget, 'loading_spinner'):
+                        widget.loading_spinner.show_spinner(message)
+                        break
+        except Exception as e:
+            # Fallback: just print the message
+            print(f"Loading: {message}")
+    
+    def _hide_loading(self):
+        """Hide loading spinner if available"""
+        try:
+            from PyQt5.QtWidgets import QApplication
+            app = QApplication.instance()
+            if app:
+                # Look for main window first
+                main_window = None
+                for widget in app.topLevelWidgets():
+                    if hasattr(widget, 'simulation_widget') and hasattr(widget.simulation_widget, 'parent'):
+                        # Found main window
+                        main_window = widget
+                        break
+                
+                if main_window and hasattr(main_window, 'simulation_widget'):
+                    # Try to find loading spinner in the simulation widget's parent (simulation tab)
+                    sim_tab = main_window.simulation_widget.parent()
+                    if hasattr(sim_tab, 'loading_spinner'):
+                        sim_tab.loading_spinner.hide_spinner()
+                        return
+                    elif hasattr(main_window, 'loading_spinner'):
+                        main_window.loading_spinner.hide_spinner()
+                        return
+                
+                # Fallback: search all widgets
+                for widget in app.allWidgets():
+                    if hasattr(widget, 'loading_spinner'):
+                        widget.loading_spinner.hide_spinner()
+                        break
+        except:
+            pass
     
     def _calculate_size_attraction_variables(self, graph):
         """Calculate size variables S_i and attraction variables A_j for Voorhees formula"""
-        print("Calculating size and attraction variables for Voorhees gravity model...")
-        
-        # Fast degree-based calculation for better performance
-        print("  Computing degree centrality (fast)...")
+        # Fast degree-based calculation
         degree_centrality = nx.degree_centrality(graph)
         
         # Use degree as primary measure, with small base value to avoid zeros
-        print("  Setting up size and attraction variables...")
-        self.size_variables = {}  # S_i: origin size (generation potential)
-        self.attraction_variables = {}  # A_j: destination attraction
-        
-        # For performance, use degree centrality as both size and attraction
-        # In practice, these could be based on different node attributes
         for node in self.nodes:
             degree_score = degree_centrality.get(node, 0)
             # Add small base value to avoid zeros and ensure numerical stability
@@ -117,413 +300,71 @@ class GravitySelection(SourceTargetSelection):
             self.size_variables[node] = base_value + degree_score
             
             # Attraction variable: attractiveness for inbound trips
-            # Could be different from size in real applications
-            self.attraction_variables[node] = base_value + degree_score
-        
+            self.attraction_variables[node] = base_value + degree_score * self.alpha
     
-    def _precompute_distances_optimized(self, graph):
-        """Optimized distance computation with performance improvements"""
-        print("Computing distances with optimizations...")
+    def _compute_distances(self, graph):
+        """Compute distances between nodes"""
+        node_count = len(self.nodes)
         
-        # For very large graphs, use approximation immediately
-        if len(self.nodes) > 1500:
-            print(f"  Large graph ({len(self.nodes)} nodes). Using Euclidean approximation.")
-            self.distances = self._fast_euclidean_distances(graph)
+        if node_count > 2000:
+            # For large graphs, use Euclidean approximation
+            print(f"    Large graph ({node_count} nodes), using Euclidean distances...")
+            self._compute_euclidean_distances_simple(graph)
         else:
+            # For smaller graphs, use shortest path
+            print(f"    Computing shortest paths for {node_count} nodes...")
             try:
-                print(f"  Computing shortest paths for {len(self.nodes)} nodes...")
-                # Use generator version to reduce memory usage
+                # Simple approach - convert generator to dict
+                path_lengths = dict(nx.all_pairs_shortest_path_length(graph))
                 self.distances = {}
-                node_count = 0
-                
-                with tqdm(total=len(self.nodes), desc="  Computing paths", unit="node") as pbar:
-                    for source, path_dict in nx.all_pairs_shortest_path_length(graph):
-                        self.distances[source] = dict(path_dict)
-                        node_count += 1
-                        pbar.update(1)
-                        
-                        # Memory check - if getting too large, switch to approximation
-                        if node_count > 1000 and len(self.distances) * len(self.nodes) > 2000000:
-                            print("  Memory limit reached. Switching to approximation.")
-                            self.distances = self._fast_euclidean_distances(graph)
-                            break
-                            
+                for source in path_lengths:
+                    self.distances[source] = dict(path_lengths[source])
+                print(f"    ✓ Computed {len(self.distances)} distance matrices")
             except (MemoryError, Exception) as e:
-                print(f"  Error computing exact distances: {e}. Using approximation.")
-                self.distances = self._fast_euclidean_distances(graph)
-        
+                print(f"    Memory error ({e}), falling back to Euclidean distances...")
+                self._compute_euclidean_distances_simple(graph)
     
-    def _fast_euclidean_distances(self, graph):
-        """Ultra-fast Euclidean distance computation with threading and vectorization"""
-        print("  Computing ultra-fast Euclidean distances...")
-        
-        # Extract positions efficiently
+    def _compute_euclidean_distances_simple(self, graph):
+        """Simple Euclidean distance computation without vectorization"""
         positions = {}
+        
+        # Extract or generate positions
         for node in self.nodes:
             if 'pos' in graph.nodes[node]:
                 positions[node] = graph.nodes[node]['pos']
             else:
-                # Consistent hash-based positioning
+                # Generate consistent positions based on node hash
                 hash_val = hash(str(node))
                 positions[node] = (hash_val % 1000, (hash_val // 1000) % 1000)
         
-        # Convert to numpy arrays for maximum performance
+        print(f"    Computing {len(self.nodes)}x{len(self.nodes)} distance matrix...")
+        
+        # Simple nested loop approach (more predictable than vectorization)
+        self.distances = {}
         node_list = list(positions.keys())
-        pos_array = np.array([positions[node] for node in node_list])
         
-        print("  Vectorized distance computation with threading...")
-        
-        # For very large graphs, use chunked computation with threading
-        if len(node_list) > 3000:
-            return self._chunked_distance_computation(node_list, pos_array)
-        else:
-            return self._full_vectorized_distances(node_list, pos_array)
-    
-    def _chunked_distance_computation(self, node_list, pos_array):
-        """Compute distances in chunks using threading for memory efficiency"""
-        
-        # Calculate chunk size based on available memory
-        chunk_size = min(1000, max(100, len(node_list) // mp.cpu_count()))
-        node_chunks = [node_list[i:i + chunk_size] for i in range(0, len(node_list), chunk_size)]
-        
-        def compute_chunk_distances(chunk_info):
-            chunk_nodes, start_idx = chunk_info
-            chunk_size = len(chunk_nodes)
-            chunk_pos = pos_array[start_idx:start_idx + chunk_size]
-            
-            # Compute distances from chunk nodes to all nodes
-            chunk_distances = {}
-            
-            # Vectorized computation for this chunk
-            for i, source_node in enumerate(chunk_nodes):
-                source_pos = chunk_pos[i:i+1]  # Keep 2D shape
-                diff = pos_array - source_pos
-                euclidean_dists = np.sqrt(np.sum(diff**2, axis=1))
+        with tqdm(total=len(node_list), desc="    Distance computation", unit="node") as pbar:
+            for i, source in enumerate(node_list):
+                self.distances[source] = {}
+                source_pos = positions[source]
                 
-                # Store distances
-                chunk_distances[source_node] = {}
-                for j, target_node in enumerate(node_list):
-                    if source_node == target_node:
-                        chunk_distances[source_node][target_node] = 0.1
-                    else:
-                        chunk_distances[source_node][target_node] = max(euclidean_dists[j], 0.1)
-            
-            return chunk_distances
-        
-        # Prepare chunk information
-        chunk_infos = [(node_chunks[i], i * len(node_chunks[i])) 
-                      for i in range(len(node_chunks))]
-        
-        # Parallel computation
-        max_workers = min(8, mp.cpu_count())
-        distances = {}
-        
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            chunk_results = list(tqdm(
-                executor.map(compute_chunk_distances, chunk_infos),
-                total=len(chunk_infos),
-                desc="  Distance chunks"
-            ))
-        
-        # Combine results
-        for chunk_result in chunk_results:
-            distances.update(chunk_result)
-        
-        # Fast normalization using numpy
-        self._fast_normalize_distances(distances)
-        
-        return distances
-    
-    def _full_vectorized_distances(self, node_list, pos_array):
-        """Full vectorized distance computation for smaller graphs"""
-        
-        distances = {}
-        
-        # Use broadcasting for ultra-fast computation
-        print("  Full vectorized computation...")
-        
-        # Compute all pairwise distances at once
-        diff = pos_array[:, np.newaxis, :] - pos_array[np.newaxis, :, :]
-        euclidean_dists = np.sqrt(np.sum(diff**2, axis=2))
-        
-        # Convert to dictionary format
-        for i, source in enumerate(node_list):
-            distances[source] = {}
-            for j, target in enumerate(node_list):
-                if i == j:
-                    distances[source][target] = 0.1
-                else:
-                    distances[source][target] = max(euclidean_dists[i, j], 0.1)
-        
-        # Fast normalization
-        self._fast_normalize_distances(distances)
-        
-        return distances
-    
-    def _fast_normalize_distances(self, distances):
-        """Fast distance normalization using numpy operations"""
-        
-        # Collect all non-zero distances
-        all_distances = []
-        for source_dict in distances.values():
-            all_distances.extend([d for d in source_dict.values() if d > 0])
-        
-        if not all_distances:
-            return
-        
-        # Use numpy for fast min/max
-        distance_array = np.array(all_distances)
-        min_dist = np.min(distance_array)
-        max_dist = np.max(distance_array)
-        
-        if max_dist > min_dist:
-            # Vectorized normalization
-            range_dist = max_dist - min_dist
-            
-            for source in distances:
-                for target in distances[source]:
-                    if distances[source][target] > 0:
-                        # Normalize to 0.1-10 range
-                        normalized = 0.1 + 9.9 * (distances[source][target] - min_dist) / range_dist
-                        distances[source][target] = normalized
-    
-    def _precompute_probability_matrix(self):
-        """Pre-compute Voorhees probability matrix with threading and optimizations"""
-        print("Pre-computing Voorhees probability matrix with optimizations...")
-        
-        # For very large graphs, use sampling to reduce computation
-        if len(self.nodes) > 5000:
-            print(f"  Large graph ({len(self.nodes)} nodes). Using optimized sampling approach.")
-            self._precompute_probability_matrix_optimized()
-            return
-        
-        # Use threading for medium graphs
-        self._precompute_probability_matrix_threaded()
-    
-    def _precompute_probability_matrix_optimized(self):
-        """Optimized approach for very large graphs using sampling and approximation"""
-        print("  Using sampling-based optimization...")
-        
-        # Sample a representative subset of nodes for full computation
-        sample_size = min(2000, len(self.nodes) // 2)
-        sampled_nodes = random.sample(self.nodes, sample_size)
-        
-        # Pre-compute for sampled nodes only
-        self.trip_probabilities = {}
-        self.cumulative_probabilities = {}
-        
-        # Convert to numpy arrays for vectorized computation
-        node_indices = {node: i for i, node in enumerate(self.nodes)}
-        size_array = np.array([self.size_variables[node] for node in self.nodes])
-        attraction_array = np.array([self.attraction_variables[node] for node in self.nodes])
-        
-        print(f"  Computing probabilities for {len(sampled_nodes)} representative nodes...")
-        
-        # Threaded computation for sampled nodes
-        def compute_source_probabilities(source):
-            source_idx = node_indices[source]
-            S_i = size_array[source_idx]
-            
-            # Get distances for this source
-            source_distances = self.distances.get(source, {})
-            
-            # Vectorized computation where possible
-            target_probs = {}
-            
-            for target in self.nodes:
-                if source == target:
-                    continue
-                
-                target_idx = node_indices[target]
-                A_j = attraction_array[target_idx]
-                d_ij = source_distances.get(target, float('inf'))
-                
-                if d_ij != float('inf') and d_ij > 0:
-                    if not self.distance_cutoff or d_ij <= self.distance_cutoff:
-                        T_ij = (S_i * A_j) / (d_ij ** self.beta)
-                        target_probs[target] = T_ij
-            
-            # Normalize probabilities
-            total = sum(target_probs.values())
-            if total > 0:
-                for target in target_probs:
-                    target_probs[target] /= total
-            
-            return source, target_probs
-        
-        # Use threading for parallel computation
-        max_workers = min(8, mp.cpu_count())
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            results = list(tqdm(
-                executor.map(compute_source_probabilities, sampled_nodes),
-                total=len(sampled_nodes),
-                desc="  Computing (threaded)"
-            ))
-        
-        # Store results for sampled nodes
-        for source, probs in results:
-            self.trip_probabilities[source] = probs
-        
-        # For non-sampled nodes, use approximation based on similar nodes
-        print("  Approximating probabilities for remaining nodes...")
-        self._approximate_remaining_probabilities(sampled_nodes)
-        
-        # Pre-compute cumulative distributions
-        print("  Pre-computing cumulative distributions...")
-        self._precompute_cumulative_distributions_fast()
-        
-        self._cache_valid = True
-        print("✓ Optimized probability matrix computation complete.")
-    
-    def _approximate_remaining_probabilities(self, sampled_nodes):
-        """Approximate probabilities for non-sampled nodes based on similar nodes"""
-        
-        # Create a mapping from non-sampled to sampled nodes based on similarity
-        sampled_sizes = {node: self.size_variables[node] for node in sampled_nodes}
-        
-        for node in self.nodes:
-            if node in self.trip_probabilities:
-                continue  # Already computed
-            
-            # Find the most similar sampled node based on size variable
-            node_size = self.size_variables[node]
-            best_match = min(sampled_nodes, 
-                           key=lambda x: abs(sampled_sizes[x] - node_size))
-            
-            # Copy probabilities from best match with slight randomization
-            if best_match in self.trip_probabilities:
-                base_probs = self.trip_probabilities[best_match].copy()
-                
-                # Add slight randomization to avoid identical behavior
-                noise_factor = 0.1
-                for target in base_probs:
-                    noise = random.uniform(1 - noise_factor, 1 + noise_factor)
-                    base_probs[target] *= noise
-                
-                # Renormalize
-                total = sum(base_probs.values())
-                if total > 0:
-                    for target in base_probs:
-                        base_probs[target] /= total
-                
-                self.trip_probabilities[node] = base_probs
-            else:
-                # Fallback: uniform distribution
-                self._create_uniform_distribution(node)
-    
-    def _create_uniform_distribution(self, source):
-        """Create uniform distribution for a source node"""
-        valid_targets = [n for n in self.nodes if n != source]
-        if valid_targets:
-            uniform_prob = 1.0 / len(valid_targets)
-            self.trip_probabilities[source] = {target: uniform_prob for target in valid_targets}
-        else:
-            self.trip_probabilities[source] = {}
-    
-    def _precompute_probability_matrix_threaded(self):
-        """Threaded computation for medium-sized graphs"""
-        print("  Using threaded computation...")
-        
-        self.trip_probabilities = {}
-        
-        # Batch processing for better performance
-        batch_size = max(50, len(self.nodes) // mp.cpu_count())
-        node_batches = [self.nodes[i:i + batch_size] 
-                       for i in range(0, len(self.nodes), batch_size)]
-        
-        def compute_batch_probabilities(node_batch):
-            batch_results = {}
-            
-            for source in node_batch:
-                S_i = self.size_variables[source]
-                target_probs = {}
-                
-                for target in self.nodes:
+                for j, target in enumerate(node_list):
                     if source == target:
-                        continue
-                    
-                    A_j = self.attraction_variables[target]
-                    d_ij = self.distances.get(source, {}).get(target, float('inf'))
-                    
-                    if d_ij != float('inf') and d_ij > 0:
-                        if not self.distance_cutoff or d_ij <= self.distance_cutoff:
-                            T_ij = (S_i * A_j) / (d_ij ** self.beta)
-                            target_probs[target] = T_ij
+                        self.distances[source][target] = 0.1  # Small non-zero value
+                    else:
+                        target_pos = positions[target]
+                        dx = source_pos[0] - target_pos[0]
+                        dy = source_pos[1] - target_pos[1]
+                        dist = (dx*dx + dy*dy)**0.5  # Avoid np.sqrt for simplicity
+                        self.distances[source][target] = max(dist, 0.1)
                 
-                # Normalize probabilities
-                total = sum(target_probs.values())
-                if total > 0:
-                    for target in target_probs:
-                        target_probs[target] /= total
-                else:
-                    # Fallback to uniform distribution
-                    valid_targets = [n for n in self.nodes if n != source]
-                    if valid_targets:
-                        uniform_prob = 1.0 / len(valid_targets)
-                        target_probs = {target: uniform_prob for target in valid_targets}
-                
-                batch_results[source] = target_probs
-            
-            return batch_results
+                pbar.update(1)
         
-        # Process batches in parallel
-        max_workers = min(8, mp.cpu_count())
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            batch_results = list(tqdm(
-                executor.map(compute_batch_probabilities, node_batches),
-                total=len(node_batches),
-                desc="  Computing batches"
-            ))
-        
-        # Combine results
-        for batch_result in batch_results:
-            self.trip_probabilities.update(batch_result)
-        self._precompute_cumulative_distributions_fast()
-        self._cache_valid = True
-    
-    def _precompute_cumulative_distributions_fast(self):
-        """Fast computation of cumulative distributions using vectorization"""
-        self.cumulative_probabilities = {}
-        
-        # Process in batches for memory efficiency
-        batch_size = 1000
-        node_batches = [list(self.trip_probabilities.keys())[i:i + batch_size] 
-                       for i in range(0, len(self.trip_probabilities), batch_size)]
-        
-        for batch in tqdm(node_batches, desc="  Cumulative dist"):
-            for source in batch:
-                if source not in self.trip_probabilities:
-                    continue
-                
-                probs_dict = self.trip_probabilities[source]
-                
-                if not probs_dict:
-                    # Empty probabilities, create uniform fallback
-                    valid_targets = [n for n in self.nodes if n != source]
-                    if valid_targets:
-                        uniform_step = 1.0 / len(valid_targets)
-                        cumulative_probs = [uniform_step * (i + 1) for i in range(len(valid_targets))]
-                        self.cumulative_probabilities[source] = (valid_targets, cumulative_probs)
-                    continue
-                
-                # Sort by probability for better numerical stability
-                sorted_items = sorted(probs_dict.items(), key=lambda x: x[1], reverse=True)
-                targets = [item[0] for item in sorted_items]
-                probs = [item[1] for item in sorted_items]
-                
-                # Compute cumulative probabilities
-                cumulative_probs = np.cumsum(probs).tolist()
-                
-                # Ensure last value is exactly 1.0
-                if cumulative_probs and cumulative_probs[-1] > 0:
-                    normalization_factor = 1.0 / cumulative_probs[-1]
-                    cumulative_probs = [p * normalization_factor for p in cumulative_probs]
-                
-                self.cumulative_probabilities[source] = (targets, cumulative_probs)
+        print(f"    ✓ Distance computation complete")
     
     def get_source_target(self, agent_type=None, current_location=None, trip_count=0):
         """
-        Get source and target using Voorhees gravity model with precomputed probabilities
+        Get source and target using simplified Voorhees gravity model
         
         Args:
             agent_type: Type of agent (not used in basic gravity model)
@@ -534,68 +375,46 @@ class GravitySelection(SourceTargetSelection):
             tuple: (source, target)
         """
         if current_location is None:
-            # First trip: select source based on size variables (generation potential)
+            # First trip: select source weighted by size variable
             source = self._select_weighted_source()
         else:
             source = current_location
         
-        # Select target using precomputed Voorhees probabilities
-        target = self._select_voorhees_target(source)
+        # Select target using Voorhees gravity formula
+        target = self._select_gravity_target(source)
         
         return source, target
     
     def _select_weighted_source(self):
         """Select a source node weighted by its size variable (generation potential)"""
+        if not self.size_variables:
+            return random.choice(self.nodes)
+        
         nodes = list(self.size_variables.keys())
         weights = list(self.size_variables.values())
         return random.choices(nodes, weights=weights)[0]
     
-    def _select_voorhees_target(self, source):
-        """Select target using precomputed Voorhees probabilities (fast O(log n) selection)"""
-        
-        # Check if probabilities are cached and valid
-        if not self._cache_valid or source not in self.cumulative_probabilities:
-            # Fallback to slower computation if cache is invalid
-            return self._compute_target_on_demand(source)
-        
-        targets, cumulative_probs = self.cumulative_probabilities[source]
-        
-        if not targets:
-            # No valid targets, select randomly
+    def _select_gravity_target(self, source):
+        """Select target using Voorhees gravity formula: T_ij = S_i * A_j / d_ij^β"""
+        if not self.distances or source not in self.distances:
+            # Fallback to random selection
             available_targets = [n for n in self.nodes if n != source]
             return random.choice(available_targets) if available_targets else source
         
-        # Fast binary search selection using cumulative probabilities
-        rand_val = random.random()
-        
-        # Binary search for target selection
-        left, right = 0, len(cumulative_probs) - 1
-        while left < right:
-            mid = (left + right) // 2
-            if cumulative_probs[mid] < rand_val:
-                left = mid + 1
-            else:
-                right = mid
-        
-        return targets[left]
-    
-    def _compute_target_on_demand(self, source):
-        """Fallback method: compute target probabilities on demand (slower)"""
-        
-        # Calculate Voorhees probabilities for this source
+        # Calculate gravity-based probabilities on demand
         target_probs = {}
-        S_i = self.size_variables[source]
+        S_i = self.size_variables.get(source, 1.0)
         
         for target in self.nodes:
             if target == source:
                 continue
-            
-            A_j = self.attraction_variables[target]
-            d_ij = self.distances.get(source, {}).get(target, float('inf'))
+                
+            A_j = self.attraction_variables.get(target, 1.0)
+            d_ij = self.distances[source].get(target, float('inf'))
             
             if d_ij == float('inf') or d_ij <= 0:
                 continue
-            
+                
             if self.distance_cutoff and d_ij > self.distance_cutoff:
                 continue
             
@@ -622,20 +441,11 @@ class GravitySelection(SourceTargetSelection):
             beta: Distance decay parameter (higher = stronger distance penalty)
             distance_cutoff: Maximum distance to consider (None = no limit)
         """
-        cache_invalidated = False
-        
-        if beta is not None and beta != self.beta:
+        if beta is not None:
             self.beta = beta
-            cache_invalidated = True
         
-        if distance_cutoff != self.distance_cutoff:
+        if distance_cutoff is not None:
             self.distance_cutoff = distance_cutoff
-            cache_invalidated = True
-        
-        # Recompute probability matrix if parameters changed
-        if cache_invalidated:
-            print("Parameters changed. Recomputing probability matrix...")
-            self._precompute_probability_matrix()
     
     @property
     def node_importance(self):
@@ -647,12 +457,14 @@ class GravitySelection(SourceTargetSelection):
         return {
             'model_type': 'voorhees_gravity',
             'beta': self.beta,
+            'alpha': self.alpha,
             'distance_cutoff': self.distance_cutoff,
             'num_nodes': len(self.nodes),
-            'avg_size': np.mean(list(self.size_variables.values())),
-            'avg_attraction': np.mean(list(self.attraction_variables.values())),
+            'avg_size': np.mean(list(self.size_variables.values())) if self.size_variables else 0,
+            'avg_attraction': np.mean(list(self.attraction_variables.values())) if self.attraction_variables else 0,
             'cache_valid': self._cache_valid
         }
+
 
 class HubAndSpokeSelection(SourceTargetSelection):
     """

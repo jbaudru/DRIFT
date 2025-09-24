@@ -307,14 +307,33 @@ class MainWindow(QMainWindow):
                     st_selector.set_parameters(intra_zone_probability=self.zone_intra_prob_spinbox.value())
             elif selection_mode == 'gravity':
                 self.add_log_message("Initializing gravity model (this may take a moment for large networks)...")
-                st_selector = GravitySelection(self.graph)
-                # Apply current gravity settings
-                if hasattr(st_selector, 'set_parameters'):
-                    st_selector.set_parameters(
+                
+                # Use the improved factory method with progress callback
+                def progress_callback(message):
+                    # Try to show loading spinner if available
+                    if hasattr(self, 'simulation_controller') and hasattr(self.simulation_controller, 'loading_spinner'):
+                        self.simulation_controller.loading_spinner.update_text(message)
+                    # Also add to log
+                    self.add_log_message(f"  {message}")
+                
+                # Create gravity model with progress tracking
+                try:
+                    st_selector = GravitySelection.create_with_progress(
+                        self.graph,
+                        progress_callback=progress_callback,
                         alpha=self.gravity_alpha_spinbox.value(),
                         beta=self.gravity_beta_spinbox.value()
                     )
-                self.add_log_message("Gravity model initialized successfully.")
+                    # Apply current gravity settings (parameters were already set in factory method)
+                    self.add_log_message("Gravity model initialized successfully.")
+                except Exception as e:
+                    self.add_log_message(f"Error initializing gravity model: {e}")
+                    # Fallback to regular initialization
+                    st_selector = GravitySelection(
+                        self.graph,
+                        alpha=self.gravity_alpha_spinbox.value(),
+                        beta=self.gravity_beta_spinbox.value()
+                    )
             elif selection_mode == 'hub':
                 self.add_log_message("Initializing hub-and-spoke model (this may take a moment for large networks)...")
                 st_selector = HubAndSpokeSelection(self.graph)
