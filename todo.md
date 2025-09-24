@@ -1,0 +1,48 @@
+# DRIFT: Dynamic Road Interaction Flow Tool
+
+## TODO
+- [x] multiple import formats (e.g., OSM, custom CSV)
+- [x] test other networkx files
+- [ ] Visualization improvements
+  - [x] Plot legend
+  - [x] Some speed loss because of data sent to the ploting ? -> _emit in Thread
+  - [x] Better network viz (keep all the node, smaller dot)
+  - [x] Button to reset visualization position and zoom
+- [x] Plot Hours instead 6->30, 6am->5:59am (24h)
+- [ ] Documentation
+  - [ ] docstrings
+  - [x] README.md
+    - [ ] Modify accordingly to the github repo
+- [ ] clean code
+  - [x] class for file opener
+  - [x] remove useless code
+  - [x] Remove duplicated code from :  _final_simulation_validation()
+  - [x] create lib folder and keep the main.py out
+  - [x] Fix error: "Unknown property fcolor"
+- [x] icon & name + current open file
+- [x] smoother agent movement
+- [x] in hub model, agent_type (hub/nohub)
+- [x] Tab to see statistics of the simulation in real-time (e.g., average speed, congestion points)
+- [x] Export simulation results to CSV or JSON
+- [x] Fix style in each st-model
+  - [x] Color of agent in activity
+  - [x] Hub
+  - [x] Gravity
+- [ ] Compute Gravity with thread so the windows doesn't freeze
+- [x] Bug a lot of agent with 06:00:00
+- [x] Unknow start node in the trip tab, 0 average speed, 0 distance, 0 duration
+- [x] Refactor OOP class of the gui_main.py while applying MVC pattern
+- [x] Add setting tab to setup parameters of each model and Bureau of Public Roads (congestion model)
+- [ ] check if changing parameters really affect the st models
+- [ ] check if changing parameters really affect the simulation
+- [ ] Network general statistics
+  - [x] Numerical value for diameter
+  - [x] Error for Average clustering computation (N/A) - ⚠️ Clustering calculation error: not implemented for multigraph type
+  - [ ] Clear stats (general) when stop the simulation
+  - [ ] self-loop edges
+  - [ ] Coordinate ranges: X(13.108, 13.742), Y(52.342, 52.656)
+- [x] Border for the plots
+- [x] Average number of node by trips
+- [x] Hide in log "Background network rendered to cache"
+- [ ] Export stats in CSV file
+- [ ] Create .exe file for Windows
