@@ -83,7 +83,8 @@ class SettingsTab(QWidget):
         bpr_layout.addWidget(QLabel(UI.ALPHA_CONGESTION_LABEL), 1, 0)
         self.bpr_alpha_spinbox = QDoubleSpinBox()
         self.bpr_alpha_spinbox.setRange(0.01, 2.0)
-        self.bpr_alpha_spinbox.setValue(0.15)
+        # Use config default value
+        self.bpr_alpha_spinbox.setValue(NETWORK.DEFAULT_BPR_ALPHA)
         self.bpr_alpha_spinbox.setSingleStep(0.01)
         self.bpr_alpha_spinbox.setDecimals(3)
         self.bpr_alpha_spinbox.setToolTip(UI.BPR_ALPHA_TOOLTIP)
@@ -93,7 +94,8 @@ class SettingsTab(QWidget):
         bpr_layout.addWidget(QLabel(UI.BETA_DISTANCE_LABEL), 2, 0)
         self.bpr_beta_spinbox = QDoubleSpinBox()
         self.bpr_beta_spinbox.setRange(1.0, 8.0)
-        self.bpr_beta_spinbox.setValue(4.0)
+        # Use config default value
+        self.bpr_beta_spinbox.setValue(NETWORK.DEFAULT_BPR_BETA)
         self.bpr_beta_spinbox.setSingleStep(0.1)
         self.bpr_beta_spinbox.setDecimals(1)
         self.bpr_beta_spinbox.setToolTip(UI.BPR_BETA_TOOLTIP)
@@ -115,7 +117,6 @@ class SettingsTab(QWidget):
         self.hour_probability_spinboxes = {}
         
         # Use default probabilities from config
-        from config import MODELS
         default_hourly_probs = MODELS.DEFAULT_HOURLY_PROBABILITIES
         
         for hour in range(24):
@@ -181,7 +182,8 @@ class SettingsTab(QWidget):
         zone_layout.addWidget(QLabel(UI.INTRA_ZONE_PROB_LABEL), 1, 0)
         self.zone_intra_prob_spinbox = QDoubleSpinBox()
         self.zone_intra_prob_spinbox.setRange(0.0, 1.0)
-        self.zone_intra_prob_spinbox.setValue(0.6)
+        # Use config default value
+        self.zone_intra_prob_spinbox.setValue(MODELS.DEFAULT_ZONE_INTRA_PROBABILITY)
         self.zone_intra_prob_spinbox.setSingleStep(0.05)
         self.zone_intra_prob_spinbox.setDecimals(2)
         self.zone_intra_prob_spinbox.setToolTip(UI.ZONE_INTRA_TOOLTIP)
@@ -198,16 +200,17 @@ class SettingsTab(QWidget):
         activity_label.setStyleSheet("font-weight: bold; margin-top: 10px; border: 0px;")
         activity_layout.addWidget(activity_label, 0, 0, 1, 2)
         
-        # Agent type distributions
+        # Agent type distributions - use config defaults
         agent_types = ['commuter', 'delivery', 'leisure', 'business']
-        default_distributions = {'commuter': 0.4, 'delivery': 0.2, 'leisure': 0.25, 'business': 0.15}
+        # Use default distributions from config
+        default_distributions = MODELS.DEFAULT_AGENT_TYPE_DISTRIBUTIONS
         self.agent_type_spinboxes = {}
         
         for i, agent_type in enumerate(agent_types):
             activity_layout.addWidget(QLabel(f"{agent_type.capitalize()} probability:"), i + 1, 0)
             spinbox = QDoubleSpinBox()
             spinbox.setRange(0.0, 1.0)
-            spinbox.setValue(default_distributions[agent_type])
+            spinbox.setValue(default_distributions.get(agent_type, 0.25))  # Fallback to 0.25 if not found
             spinbox.setSingleStep(0.05)
             spinbox.setDecimals(2)
             spinbox.setToolTip(UI.AGENT_TYPE_PROBABILITY_TOOLTIP_TEMPLATE.format(agent_type))
@@ -228,7 +231,8 @@ class SettingsTab(QWidget):
         gravity_layout.addWidget(QLabel(UI.ATTRACTION_FACTOR_LABEL), 1, 0)
         self.gravity_alpha_spinbox = QDoubleSpinBox()
         self.gravity_alpha_spinbox.setRange(0.1, 5.0)
-        self.gravity_alpha_spinbox.setValue(1.0)
+        # Use config default value
+        self.gravity_alpha_spinbox.setValue(MODELS.DEFAULT_GRAVITY_ALPHA)
         self.gravity_alpha_spinbox.setSingleStep(0.1)
         self.gravity_alpha_spinbox.setDecimals(1)
         self.gravity_alpha_spinbox.setToolTip(UI.GRAVITY_ALPHA_TOOLTIP)
@@ -237,7 +241,8 @@ class SettingsTab(QWidget):
         gravity_layout.addWidget(QLabel(UI.DISTANCE_DECAY_LABEL), 2, 0)
         self.gravity_beta_spinbox = QDoubleSpinBox()
         self.gravity_beta_spinbox.setRange(0.5, 8.0)
-        self.gravity_beta_spinbox.setValue(2.0)
+        # Use config default value
+        self.gravity_beta_spinbox.setValue(MODELS.DEFAULT_GRAVITY_BETA)
         self.gravity_beta_spinbox.setSingleStep(0.1)
         self.gravity_beta_spinbox.setDecimals(1)
         self.gravity_beta_spinbox.setToolTip(UI.GRAVITY_BETA_TOOLTIP)
@@ -257,7 +262,8 @@ class SettingsTab(QWidget):
         hub_layout.addWidget(QLabel(UI.HUB_TRIP_PROB_LABEL), 1, 0)
         self.hub_trip_prob_spinbox = QDoubleSpinBox()
         self.hub_trip_prob_spinbox.setRange(0.0, 1.0)
-        self.hub_trip_prob_spinbox.setValue(0.7)
+        # Use config default value
+        self.hub_trip_prob_spinbox.setValue(MODELS.DEFAULT_HUB_TRIP_PROBABILITY)
         self.hub_trip_prob_spinbox.setSingleStep(0.05)
         self.hub_trip_prob_spinbox.setDecimals(2)
         self.hub_trip_prob_spinbox.setToolTip(UI.HUB_TRIP_TOOLTIP)
@@ -266,7 +272,8 @@ class SettingsTab(QWidget):
         hub_layout.addWidget(QLabel(UI.HUB_PERCENTAGE_LABEL), 2, 0)
         self.hub_percentage_spinbox = QDoubleSpinBox()
         self.hub_percentage_spinbox.setRange(0.05, 0.5)
-        self.hub_percentage_spinbox.setValue(0.30)
+        # Use config default value
+        self.hub_percentage_spinbox.setValue(MODELS.DEFAULT_HUB_PERCENTAGE)
         self.hub_percentage_spinbox.setSingleStep(0.01)
         self.hub_percentage_spinbox.setDecimals(2)
         self.hub_percentage_spinbox.setToolTip(UI.HUB_PERCENTAGE_TOOLTIP)

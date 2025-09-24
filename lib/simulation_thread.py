@@ -199,14 +199,12 @@ class SimulationThread(QThread):
                     self.agents = [Agent(self.graph, agent_type='random', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 
             elif self.selection_mode == 'activity':
-                st_selector = ActivityBasedSelection(self.graph)
-                
-                # Apply activity-based settings if available
+                # Create ActivityBasedSelection with user settings
                 if self.settings and 'agent_type_distributions' in self.settings:
-                    # Use custom distribution from settings
+                    st_selector = ActivityBasedSelection(self.graph, agent_type_distributions=self.settings['agent_type_distributions'])
                     type_distribution = self.settings['agent_type_distributions']
                 else:
-                    # Use default distribution
+                    st_selector = ActivityBasedSelection(self.graph)
                     type_distribution = st_selector.get_agent_types_distribution()
                 
                 agent_types = list(type_distribution.keys())
@@ -219,25 +217,24 @@ class SimulationThread(QThread):
                     self.agents.append(agent)
             
             elif self.selection_mode == 'zone':
-                st_selector = ZoneBasedSelection(self.graph)
-                
-                # Apply zone-based settings if available
+                # Create ZoneBasedSelection with user settings
                 if self.settings and 'zone_intra_probability' in self.settings:
-                    if hasattr(st_selector, 'set_parameters'):
-                        st_selector.set_parameters(intra_zone_probability=self.settings['zone_intra_probability'])
+                    st_selector = ZoneBasedSelection(self.graph, intra_zone_probability=self.settings['zone_intra_probability'])
+                else:
+                    st_selector = ZoneBasedSelection(self.graph)
                 
                 self.agents = [Agent(self.graph, agent_type='zone', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 zone_info = st_selector.get_zone_info()
                 self.log_message.emit(f"Zone-based selection initialized with {len(zone_info)} zones")
             
             elif self.selection_mode == 'gravity':
-                st_selector = GravitySelection(self.graph)
-                
-                # Apply gravity model settings if available
+                # Create GravitySelection with user settings
                 if self.settings:
                     alpha = self.settings.get('gravity_alpha', 1.0)
                     beta = self.settings.get('gravity_beta', 2.0)
-                    st_selector.set_parameters(alpha=alpha, beta=beta)
+                    st_selector = GravitySelection(self.graph, alpha=alpha, beta=beta)
+                else:
+                    st_selector = GravitySelection(self.graph)
                 
                 self.agents = [Agent(self.graph, agent_type='gravity', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 model_info = st_selector.get_model_info()
@@ -247,13 +244,13 @@ class SimulationThread(QThread):
                 self.log_message.emit(f"Selection mode confirmed: {self.selection_mode}")
             
             elif self.selection_mode == 'hub':
-                st_selector = HubAndSpokeSelection(self.graph)
-                
-                # Apply hub-and-spoke settings if available
+                # Create HubAndSpokeSelection with user settings
                 if self.settings:
-                    hub_trip_prob = self.settings.get('hub_trip_probability', 0.7)
-                    hub_percentage = self.settings.get('hub_percentage', 0.15)
-                    st_selector.set_parameters(hub_trip_probability=hub_trip_prob, hub_percentage=hub_percentage)
+                    hub_trip_prob = self.settings.get('hub_trip_probability', 0.3)
+                    hub_percentage = self.settings.get('hub_percentage', 0.1)
+                    st_selector = HubAndSpokeSelection(self.graph, hub_trip_probability=hub_trip_prob, hub_percentage=hub_percentage)
+                else:
+                    st_selector = HubAndSpokeSelection(self.graph)
                 
                 self.agents = [Agent(self.graph, agent_type='hub', st_selector=st_selector, traffic_manager=self.traffic_manager, hourly_probabilities=hourly_probabilities) for _ in range(self.num_agents)]
                 model_info = st_selector.get_model_info()

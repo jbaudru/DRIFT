@@ -69,15 +69,15 @@ class GravitySelection(SourceTargetSelection):
     p_ij = T_ij / Σ(T_kl) = (S_i * A_j / d_ij^β) / Σ(S_k * A_l / d_kl^β)
     """
     
-    def __init__(self, graph, config=None):
+    def __init__(self, graph, config=None, alpha=None, beta=None):
         super().__init__(graph)
         
         # Use provided config or fall back to default
         self.config = config if config is not None else MODELS
         
-        # Voorhees gravity model parameters (configurable)
-        self.beta = getattr(self.config, 'DEFAULT_GRAVITY_BETA', 2.0)   # Distance decay parameter
-        self.alpha = getattr(self.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)  # Attraction scaling parameter
+        # Use provided parameters first, then config, then hardcoded defaults
+        self.beta = beta if beta is not None else getattr(self.config, 'DEFAULT_GRAVITY_BETA', 2.0)   # Distance decay parameter
+        self.alpha = alpha if alpha is not None else getattr(self.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)  # Attraction scaling parameter
         self.distance_cutoff = getattr(self.config, 'GRAVITY_DISTANCE_CUTOFF', None)  # Maximum distance to consider (None = no limit)
         
         # Performance optimization: cache computed probabilities
@@ -661,15 +661,15 @@ class HubAndSpokeSelection(SourceTargetSelection):
     Reflects real-world traffic concentration at major intersections/centers.
     """
     
-    def __init__(self, graph, config=None):
+    def __init__(self, graph, config=None, hub_trip_probability=None, hub_percentage=None):
         super().__init__(graph)
         
         # Use provided config or fall back to default
         self.config = config if config is not None else MODELS
         
-        # Hub-and-spoke parameters (configurable)
-        self.hub_trip_probability = getattr(self.config, 'DEFAULT_HUB_TRIP_PROBABILITY', 0.3)  # % of trips involve hubs
-        self.hub_percentage = getattr(self.config, 'DEFAULT_HUB_PERCENTAGE', 0.1)  # % of nodes considered hubs
+        # Use provided parameters first, then config, then hardcoded defaults
+        self.hub_trip_probability = hub_trip_probability if hub_trip_probability is not None else getattr(self.config, 'DEFAULT_HUB_TRIP_PROBABILITY', 0.3)  # % of trips involve hubs
+        self.hub_percentage = hub_percentage if hub_percentage is not None else getattr(self.config, 'DEFAULT_HUB_PERCENTAGE', 0.1)  # % of nodes considered hubs
         
         # Identify major hubs based on centrality
         self._identify_hubs(graph)
@@ -840,11 +840,16 @@ class ActivityBasedSelection(SourceTargetSelection):
     Activity-based source-target selection model for different agent types
     """
     
-    def __init__(self, graph, config=None):
+    def __init__(self, graph, config=None, agent_type_distributions=None):
         super().__init__(graph)
         
         # Use provided config or fall back to default
         self.config = config if config is not None else MODELS
+        
+        # Use provided agent type distributions or defaults
+        self.agent_type_distributions = agent_type_distributions if agent_type_distributions is not None else getattr(self.config, 'DEFAULT_AGENT_TYPE_DISTRIBUTIONS', {
+            'commuter': 0.4, 'leisure': 0.3, 'business': 0.2, 'delivery': 0.1
+        })
         
         # Store zone thresholds as configurable parameters
         self.center_threshold = getattr(self.config, 'ACTIVITY_CENTER_THRESHOLD', 0.3)  # 30% of radius from center
@@ -1251,13 +1256,8 @@ class ActivityBasedSelection(SourceTargetSelection):
         return source, target
     
     def get_agent_types_distribution(self):
-        """Return suggested distribution of agent types"""
-        return {
-            'commuter': 0.4,    # 40% commuters
-            'delivery': 0.15,   # 15% delivery
-            'leisure': 0.25,    # 25% leisure
-            'business': 0.2     # 20% business
-        }
+        """Return configured distribution of agent types"""
+        return self.agent_type_distributions
     
     def get_activity_nodes(self):
         """Return dictionary of activity nodes for visualization"""
@@ -1275,14 +1275,14 @@ class ZoneBasedSelection(SourceTargetSelection):
     Divides network into 3x3 grid with 60% intra-zone and 40% inter-zone trips
     """
     
-    def __init__(self, graph, config=None):
+    def __init__(self, graph, config=None, intra_zone_probability=None):
         super().__init__(graph)
         
         # Use provided config or fall back to default
         self.config = config if config is not None else MODELS
         
-        # Store configurable parameters
-        self.intra_zone_probability = getattr(self.config, 'DEFAULT_ZONE_INTRA_PROBABILITY', 0.7)
+        # Use provided parameters first, then config, then hardcoded defaults
+        self.intra_zone_probability = intra_zone_probability if intra_zone_probability is not None else getattr(self.config, 'DEFAULT_ZONE_INTRA_PROBABILITY', 0.7)
         self.grid_size = getattr(self.config, 'ZONE_GRID_SIZE', 3)  # 3x3 grid by default
         
         # Create zone grid
