@@ -15,6 +15,8 @@ A mesoscopic traffic simulator designed to balance the fidelity of microscopic m
 
 DRIFT (DRIve Fleet Tool) represents individual vehicles as discrete agents with unique trajectories and behavioral profiles, while simultaneously capturing aggregate traffic dynamics at the network level. It provides a flexible framework for transportation researchers to study mobility dynamics, congestion patterns, and network optimization.
 
+For detailed information about the implementation, algorithms, and theoretical background, please refer to the technical report: **[DRIFT - Technical Report - v1.pdf](doc/DRIFT%20-%20Technical%20report%20-%20v1.pdf)**
+
 ## Key Features
 
 ### 🚗 Agent-Based Mesoscopic Simulation
