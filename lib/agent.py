@@ -82,10 +82,20 @@ class Agent:
         
         self.trip_count += 1
             
+
+        # Check if source and target are in the graph
+        if self.source not in self.graph or self.target not in self.graph:
+            # Could log a warning here if desired
+            self.path = None
+            self.state = 'waiting'  # or another appropriate state
+            return
+
         try:
             self.path = nx.shortest_path(self.graph, self.source, self.target, weight='travel_time')
         except (nx.NetworkXNoPath, nx.NodeNotFound):
-            self.start_new_journey()
+            # Could log a warning here if desired
+            self.path = None
+            self.state = 'waiting'  # or another appropriate state
             return
 
         self.path_index = 0
