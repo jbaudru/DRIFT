@@ -78,45 +78,43 @@ class StatisticsManager:
         """Update statistics data and refresh plots"""
         # Store current simulation time for trip completion tracking
         self.main_window.current_simulation_time = status_info['simulation_time']
-        
+
         # Convert simulation time to hours for plotting (starting at 6 AM)
         sim_time_hours = (status_info['simulation_time'] + 21600) / 3600.0
-        
+
         # Add current data point
         self.stats_history['time'].append(sim_time_hours)
         self.stats_history['moving_agents'].append(status_info['moving_agents'])
         self.stats_history['utilization'].append(status_info['network_utilization'] * 100)
-        
+
         # Calculate trip-based statistics from completed trips (since last update)
         avg_speed, avg_distance, avg_duration, avg_nodes_per_trip, total_trip_count = self._calculate_trip_statistics_since_last_update()
-        
-        # Get current active agent type distribution from status_info
-        # This data should now come directly from the traffic manager's network statistics
-        active_agent_type_data = status_info.get('active_agent_types', {})
-        moving_agents_count = status_info['moving_agents']
-        
-        # Debug: Log what we receive for agent types (only occasionally to avoid spam)
-        if len(self.stats_history['time']) % 20 == 0:  # Log every 20th update
-            self.main_window.add_log_message(f"Debug: Received agent types data: {active_agent_type_data}")
-        
-        # Use the agent type data directly from traffic manager (it's already in count format)
-        active_agent_types = {}
-        
-        if active_agent_type_data and isinstance(active_agent_type_data, dict):
-            # The data from traffic manager should already be in count format for moving agents
-            active_agent_types = active_agent_type_data.copy()
-        else:
-            # Fallback: create unknown type only if we have moving agents but no type data
-            if moving_agents_count > 0:
-                active_agent_types = {"unknown": moving_agents_count}
-        
+
+        # --- NEW: Count agent types from actual moving agents ---
+        agent_type_counts = {}
+        agent_list = []
+        # Try to get the agent list from the main window or simulation thread
+        if hasattr(self.main_window, 'simulation_thread') and hasattr(self.main_window.simulation_thread, 'agents'):
+            agent_list = self.main_window.simulation_thread.agents
+        elif hasattr(self.main_window, 'agents'):
+            agent_list = self.main_window.agents
+
+        for agent in agent_list:
+            if getattr(agent, 'state', None) == 'moving':
+                agent_type = getattr(agent, 'agent_type', 'unknown')
+                agent_type_counts[agent_type] = agent_type_counts.get(agent_type, 0) + 1
+
+        # Debug: Log agent type counts and moving agent sum occasionally
+        if len(self.stats_history['time']) % 20 == 0:
+            self.main_window.add_log_message(f"Debug: Agent type counts: {agent_type_counts} (sum={sum(agent_type_counts.values())}, moving_agents={status_info['moving_agents']})")
+
         self.stats_history['avg_speed'].append(avg_speed)
         self.stats_history['avg_trip_distance'].append(avg_distance)
         self.stats_history['avg_trip_duration'].append(avg_duration)
         self.stats_history['avg_nodes_per_trip'].append(avg_nodes_per_trip)
-        self.stats_history['agent_types'].append(active_agent_types)
+        self.stats_history['agent_types'].append(agent_type_counts)
         self.stats_history['trip_count'].append(total_trip_count)
-        
+
         # Update plots (only if we have data and plots are initialized)
         if hasattr(self.main_window, 'stats_axes') and len(self.stats_history['time']) > 0:
             self.update_plots()
