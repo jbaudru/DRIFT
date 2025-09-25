@@ -594,34 +594,57 @@ class SimulationWidget(QWidget):
         return circles
     
     def calculate_hub_circles(self):
-        """Pre-calculate hub circle data"""
+        """Pre-calculate hub circle data with size proportional to hub importance (centrality)"""
         if not hasattr(self.st_selector, 'get_hub_nodes'):
             return []
-        
+
         try:
             hub_data = self.st_selector.get_hub_nodes()
-            if isinstance(hub_data, dict) and 'hubs' in hub_data:
+            if isinstance(hub_data, dict) and 'hubs' in hub_data and 'centrality' in hub_data:
                 hub_nodes = hub_data['hubs']
+                centrality = hub_data['centrality']
             else:
+                # Fallback: treat as list, no centrality info
                 hub_nodes = hub_data
-        except:
+                centrality = {hub_id: 1.0 for hub_id in hub_nodes}
+        except Exception as e:
             return []
-        
+
         x_coords = [pos[0] for pos in self.cached_node_positions.values()]
         y_coords = [pos[1] for pos in self.cached_node_positions.values()]
         network_width = max(x_coords) - min(x_coords)
         network_height = max(y_coords) - min(y_coords)
         base_radius = min(network_width, network_height) * 0.005
-        
+
+        # Normalize centrality values for scaling
+        centrality_values = [centrality.get(hub_id, 0) for hub_id in hub_nodes]
+        if centrality_values:
+            min_c = min(centrality_values)
+            max_c = max(centrality_values)
+            c_range = max_c - min_c if max_c > min_c else 1.0
+        else:
+            min_c = 0
+            max_c = 1
+            c_range = 1.0
+
+        min_scale = 0.7  # Minimum scale for smallest hub
+        max_scale = 2.0  # Maximum scale for largest hub
+
         circles = []
         for hub_id in hub_nodes:
             if hub_id in self.cached_node_positions:
+                c_val = centrality.get(hub_id, min_c)
+                # Normalize centrality to [0,1]
+                norm_c = (c_val - min_c) / c_range if c_range > 0 else 0.5
+                # Scale radius between min_scale and max_scale
+                scale = min_scale + (max_scale - min_scale) * norm_c
+                radius = base_radius * scale
                 circles.append({
                     'pos': self.cached_node_positions[hub_id],
-                    'radius': base_radius,
+                    'radius': radius,
                     'color': QColor(255, 165, 0)  # Orange
                 })
-        
+
         return circles
     
     def set_agents(self, agents):
