@@ -287,6 +287,21 @@ class StatisticsManager:
         
         return avg_distance, avg_duration, avg_nodes_per_trip, current_trip_count
 
+    def _calculate_trend_line(self, data, window_size=10):
+        """Calculate a simple moving average trend line"""
+        if len(data) < window_size:
+            return list(data)
+        
+        trend = []
+        for i in range(len(data)):
+            if i < window_size - 1:
+                # For the beginning, use available data
+                trend.append(sum(data[:i+1]) / (i+1))
+            else:
+                # Rolling average
+                trend.append(sum(data[i-window_size+1:i+1]) / window_size)
+        return trend
+    
     def update_plots(self):
         """Update all real-time plots"""
         try:
@@ -297,56 +312,92 @@ class StatisticsManager:
             
             # Plot 1: Moving agents vs time
             self.main_window.stats_axes[0].clear()
-            self.main_window.stats_axes[0].plot(times, list(self.stats_history['moving_agents']), 'b-', linewidth=1.5, marker='o', markersize=2)
+            moving_agents_data = list(self.stats_history['moving_agents'])
+            moving_agents_trend = self._calculate_trend_line(moving_agents_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[0].plot(times, moving_agents_data, 'b:', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[0].plot(times, moving_agents_trend, 'b-', linewidth=2.0, alpha=1.0, label='Trend')
             self.main_window.stats_axes[0].set_title('Moving Agents vs Time', fontsize=10)
             self.main_window.stats_axes[0].set_ylabel('Number of Moving Agents', fontsize=8)
             self.main_window.stats_axes[0].grid(True, alpha=0.3)
             self.main_window.stats_axes[0].tick_params(labelsize=8)
+            self.main_window.stats_axes[0].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[0], times)
             
             # Plot 2: Network utilization vs time
             self.main_window.stats_axes[1].clear()
-            self.main_window.stats_axes[1].plot(times, list(self.stats_history['utilization']), 'r-', linewidth=1.5, marker='o', markersize=2)
+            utilization_data = list(self.stats_history['utilization'])
+            utilization_trend = self._calculate_trend_line(utilization_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[1].plot(times, utilization_data, 'r:', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[1].plot(times, utilization_trend, 'r-', linewidth=2.0, alpha=1.0, label='Trend')
             self.main_window.stats_axes[1].set_title('Network Utilization vs Time', fontsize=10)
             self.main_window.stats_axes[1].set_ylabel('Network Utilization (%)', fontsize=8)
             self.main_window.stats_axes[1].grid(True, alpha=0.3)
             self.main_window.stats_axes[1].tick_params(labelsize=8)
+            self.main_window.stats_axes[1].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[1], times)
             
             # Plot 3: Average speed vs time
             self.main_window.stats_axes[2].clear()
-            self.main_window.stats_axes[2].plot(times, list(self.stats_history['avg_speed']), 'g-', linewidth=1.5, marker='o', markersize=2)
+            speed_data = list(self.stats_history['avg_speed'])
+            speed_trend = self._calculate_trend_line(speed_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[2].plot(times, speed_data, 'g:', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[2].plot(times, speed_trend, 'g-', linewidth=2.0, alpha=1.0, label='Trend')
             self.main_window.stats_axes[2].set_title('Average Speed of Moving Agents vs Time', fontsize=10)
             self.main_window.stats_axes[2].set_ylabel('Average Speed (km/h)', fontsize=8)
             self.main_window.stats_axes[2].grid(True, alpha=0.3)
             self.main_window.stats_axes[2].tick_params(labelsize=8)
+            self.main_window.stats_axes[2].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[2], times)
             
             # Plot 4: Average trip distance vs time
             self.main_window.stats_axes[3].clear()
-            self.main_window.stats_axes[3].plot(times, list(self.stats_history['avg_trip_distance']), 'm-', linewidth=1.5, marker='o', markersize=2)
-            self.main_window.stats_axes[3].set_title('Average Trip Distance vs Time (Since Last Update)', fontsize=10)
+            distance_data = list(self.stats_history['avg_trip_distance'])
+            distance_trend = self._calculate_trend_line(distance_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[3].plot(times, distance_data, 'm:', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[3].plot(times, distance_trend, 'm-', linewidth=2.0, alpha=1.0, label='Trend')
+            self.main_window.stats_axes[3].set_title('Average Trip Distance vs Time', fontsize=10)
             self.main_window.stats_axes[3].set_ylabel('Average Trip Distance (km)', fontsize=8)
             self.main_window.stats_axes[3].grid(True, alpha=0.3)
             self.main_window.stats_axes[3].tick_params(labelsize=8)
+            self.main_window.stats_axes[3].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[3], times)
             
             # Plot 5: Average trip duration vs time
             self.main_window.stats_axes[4].clear()
-            self.main_window.stats_axes[4].plot(times, list(self.stats_history['avg_trip_duration']), 'c-', linewidth=1.5, marker='o', markersize=2)
-            self.main_window.stats_axes[4].set_title('Average Trip Duration vs Time (Since Last Update)', fontsize=10)
+            duration_data = list(self.stats_history['avg_trip_duration'])
+            duration_trend = self._calculate_trend_line(duration_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[4].plot(times, duration_data, 'c:', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[4].plot(times, duration_trend, 'c-', linewidth=2.0, alpha=1.0, label='Trend')
+            self.main_window.stats_axes[4].set_title('Average Trip Duration vs Time', fontsize=10)
             self.main_window.stats_axes[4].set_ylabel('Average Trip Duration (min)', fontsize=8)
             self.main_window.stats_axes[4].grid(True, alpha=0.3)
             self.main_window.stats_axes[4].tick_params(labelsize=8)
+            self.main_window.stats_axes[4].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[4], times)
             
             # Plot 6: Average nodes per trip vs time
             self.main_window.stats_axes[5].clear()
-            self.main_window.stats_axes[5].plot(times, list(self.stats_history['avg_nodes_per_trip']), 'orange', linewidth=1.5, marker='o', markersize=2)
-            self.main_window.stats_axes[5].set_title('Average Nodes per Trip vs Time (Since Last Update)', fontsize=10)
+            nodes_data = list(self.stats_history['avg_nodes_per_trip'])
+            nodes_trend = self._calculate_trend_line(nodes_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[5].plot(times, nodes_data, color='orange', linestyle=':', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[5].plot(times, nodes_trend, color='orange', linestyle='-', linewidth=2.0, alpha=1.0, label='Trend')
+            self.main_window.stats_axes[5].set_title('Average Nodes per Trip vs Time', fontsize=10)
             self.main_window.stats_axes[5].set_ylabel('Average Number of Nodes', fontsize=8)
             self.main_window.stats_axes[5].grid(True, alpha=0.3)
             self.main_window.stats_axes[5].tick_params(labelsize=8)
+            self.main_window.stats_axes[5].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[5], times)
             
             # Plot 7: Agent type distribution vs time
@@ -377,8 +428,16 @@ class StatisticsManager:
                     # Plot if there's meaningful data (not all zeros, or if it's the only type)
                     if any(c > 0 for c in counts) or len(all_agent_types) == 1:
                         color = COLORS.AGENT_TYPE_PLOT_COLORS[i % len(COLORS.AGENT_TYPE_PLOT_COLORS)]
-                        line = self.main_window.stats_axes[6].plot(times, counts, color=color, linewidth=1.5, 
-                                                                  label=agent_type, marker='o', markersize=2)[0]
+                        
+                        # Calculate trend line for this agent type
+                        counts_trend = self._calculate_trend_line(counts)
+                        
+                        # Instant data: dotted line with less opacity
+                        self.main_window.stats_axes[6].plot(times, counts, color=color, linestyle=':', linewidth=1.0, 
+                                                           alpha=0.4, marker='o', markersize=1.5)
+                        # Trend line: solid line
+                        line = self.main_window.stats_axes[6].plot(times, counts_trend, color=color, linestyle='-', 
+                                                                   linewidth=2.0, alpha=1.0, label=agent_type)[0]
                         legend_labels.append(agent_type)
                         legend_lines.append(line)
                 
@@ -410,11 +469,17 @@ class StatisticsManager:
             
             # Plot 8: Total trip count vs time
             self.main_window.stats_axes[7].clear()
-            self.main_window.stats_axes[7].plot(times, list(self.stats_history['trip_count']), 'purple', linewidth=1.5, marker='o', markersize=2)
+            trip_count_data = list(self.stats_history['trip_count'])
+            trip_count_trend = self._calculate_trend_line(trip_count_data)
+            # Instant data: dotted line with less opacity
+            self.main_window.stats_axes[7].plot(times, trip_count_data, color='purple', linestyle=':', linewidth=1.0, alpha=0.4, marker='o', markersize=1.5)
+            # Trend line: solid line
+            self.main_window.stats_axes[7].plot(times, trip_count_trend, color='purple', linestyle='-', linewidth=2.0, alpha=1.0, label='Trend')
             self.main_window.stats_axes[7].set_title('Total Trip Count vs Time', fontsize=10)
             self.main_window.stats_axes[7].set_ylabel('Total Number of Trips', fontsize=8)
             self.main_window.stats_axes[7].grid(True, alpha=0.3)
             self.main_window.stats_axes[7].tick_params(labelsize=8)
+            self.main_window.stats_axes[7].legend(fontsize=7, loc='best')
             self.format_time_axis(self.main_window.stats_axes[7], times)
             
             # Refresh all canvases
