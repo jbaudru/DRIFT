@@ -14,6 +14,8 @@ class StatisticsManager:
         self.main_window = main_window
         self.stats_history = self._initialize_stats_history()
         self.last_plot_update_trip_count = 0
+        # Rolling window size for more stable statistics (number of completed trips to average)
+        self.rolling_window_size = 50  # Average over last 50 completed trips
         
     def _initialize_stats_history(self):
         """Initialize the statistics history data structure"""
@@ -87,8 +89,11 @@ class StatisticsManager:
         self.stats_history['moving_agents'].append(status_info['moving_agents'])
         self.stats_history['utilization'].append(status_info['network_utilization'] * 100)
 
+        # Calculate real-time average speed from currently moving agents
+        avg_speed = self._calculate_current_average_speed()
+        
         # Calculate trip-based statistics from completed trips (since last update)
-        avg_speed, avg_distance, avg_duration, avg_nodes_per_trip, total_trip_count = self._calculate_trip_statistics_since_last_update()
+        avg_distance, avg_duration, avg_nodes_per_trip, total_trip_count = self._calculate_trip_statistics_since_last_update()
 
         # --- NEW: Count agent types from actual moving agents ---
         agent_type_counts = {}
@@ -119,25 +124,138 @@ class StatisticsManager:
         if hasattr(self.main_window, 'stats_axes') and len(self.stats_history['time']) > 0:
             self.update_plots()
     
+    def _calculate_current_average_speed(self):
+        """Calculate the current average speed from all moving agents
+        This provides real-time speed reflecting current congestion"""
+        
+        # Get the list of agents from the simulation thread
+        agent_list = []
+        if hasattr(self.main_window, 'simulation_thread') and hasattr(self.main_window.simulation_thread, 'agents'):
+            agent_list = self.main_window.simulation_thread.agents
+        elif hasattr(self.main_window, 'agents'):
+            agent_list = self.main_window.agents
+        
+        if not agent_list:
+            return 0
+        
+        # Collect speeds from all currently moving agents
+        moving_speeds = []
+        for agent in agent_list:
+            if getattr(agent, 'state', None) == 'moving':
+                speed_ms = getattr(agent, 'speed', 0)  # Speed in m/s
+                if speed_ms > 0:
+                    moving_speeds.append(speed_ms * 3.6)  # Convert m/s to km/h
+        
+        # Calculate average
+        if moving_speeds:
+            avg_speed = sum(moving_speeds) / len(moving_speeds)
+            return avg_speed
+        else:
+            return 0
+    
+    def _calculate_trip_statistics_rolling_window(self):
+        """Calculate statistics from a rolling window of recently completed trips
+        This provides more stable metrics compared to 'since last update' approach"""
+        
+        total_trip_count = len(self.main_window.completed_trips)
+        
+        if total_trip_count == 0:
+            return 0, 0, 0, 0, 0
+        
+        # Use rolling window: take last N trips (or all trips if fewer than N)
+        window_size = min(self.rolling_window_size, total_trip_count)
+        recent_trips = self.main_window.completed_trips[-window_size:]
+        
+        if not recent_trips:
+            return 0, 0, 0, 0, total_trip_count
+        
+        # Calculate averages from recent trips in the window with validation
+        speeds = []
+        distances = []
+        
+        # Debug: Log first few trips occasionally to diagnose the issue
+        if total_trip_count <= 5 or (total_trip_count % 100 == 0 and total_trip_count <= 500):
+            self.main_window.add_log_message(f"DEBUG Trip Stats - Total trips: {total_trip_count}, Window size: {window_size}")
+            for i, trip in enumerate(recent_trips[:3]):  # Log first 3 trips in window
+                self.main_window.add_log_message(
+                    f"  Trip {i}: speed={trip.get('avg_speed', 0):.2f} m/s, "
+                    f"distance={trip.get('distance', 0):.1f} m, "
+                    f"recorded_duration={trip.get('duration', 0):.1f} s, "
+                    f"nodes={len(trip.get('path_nodes', []))}"
+                )
+        
+        for trip in recent_trips:
+            # Validate and collect speed data
+            speed = trip.get('avg_speed', 0)
+            if speed > 0 and speed < 100:  # Filter unrealistic speeds (> 360 km/h)
+                speeds.append(speed * 3.6)  # Convert m/s to km/h
+            
+            # Validate and collect distance data
+            distance = trip.get('distance', 0)
+            if distance > 0 and distance < 1000000:  # Filter unrealistic distances (> 1000 km)
+                distances.append(distance / 1000)  # Convert m to km
+        
+        # Calculate average nodes per trip
+        nodes_per_trip = []
+        for trip in recent_trips:
+            path_nodes = trip.get('path_nodes', [])
+            if isinstance(path_nodes, list) and len(path_nodes) > 0:
+                nodes_per_trip.append(len(path_nodes))
+        
+        # Calculate averages for speed and distance first
+        avg_speed = sum(speeds) / len(speeds) if speeds else 0
+        avg_distance = sum(distances) / len(distances) if distances else 0
+        avg_nodes_per_trip = sum(nodes_per_trip) / len(nodes_per_trip) if nodes_per_trip else 0
+        
+        # CORRECTED: Calculate duration from the computed average speed and distance
+        # This ensures perfect consistency: duration = distance / speed
+        if avg_speed > 0 and avg_distance > 0:
+            # Convert avg_speed from km/h to m/s, avg_distance from km to m
+            avg_speed_ms = avg_speed / 3.6  # km/h to m/s
+            avg_distance_m = avg_distance * 1000  # km to m
+            
+            # Calculate duration: time = distance / speed
+            avg_duration_s = avg_distance_m / avg_speed_ms  # seconds
+            avg_duration = avg_duration_s / 60  # Convert to minutes
+            
+            # Debug: Show the calculation
+            if total_trip_count <= 10 or (total_trip_count % 100 == 0 and total_trip_count <= 500):
+                self.main_window.add_log_message(
+                    f"  Computed duration: {avg_duration:.2f} min from "
+                    f"avg_distance={avg_distance:.3f} km, avg_speed={avg_speed:.2f} km/h"
+                )
+        else:
+            avg_duration = 0
+        
+        # Debug: Log computed averages occasionally
+        if total_trip_count % 100 == 0 and total_trip_count <= 500:
+            self.main_window.add_log_message(
+                f"DEBUG Averages - Speed: {avg_speed:.1f} km/h, "
+                f"Distance: {avg_distance:.2f} km, "
+                f"Duration: {avg_duration:.1f} min (computed from speed & distance), "
+                f"Valid samples: speed={len(speeds)}, dist={len(distances)}"
+            )
+        
+        return avg_speed, avg_distance, avg_duration, avg_nodes_per_trip, total_trip_count
+    
     def _calculate_trip_statistics_since_last_update(self):
-        """Calculate statistics from trips completed since the last plot update"""
+        """Calculate statistics from trips completed since the last plot update
+        Returns distance, duration, and nodes per trip (speed is calculated separately from moving agents)"""
         # Get trips that have been completed since last update
         current_trip_count = len(self.main_window.completed_trips)
         
         if current_trip_count <= self.last_plot_update_trip_count:
             # No new trips since last update
-            return 0, 0, 0, 0, current_trip_count
+            return 0, 0, 0, current_trip_count
         
         # Get only the new trips since last update
         new_trips = self.main_window.completed_trips[self.last_plot_update_trip_count:]
         
         if not new_trips:
-            return 0, 0, 0, 0, current_trip_count
+            return 0, 0, 0, current_trip_count
         
         # Calculate averages from new trips only
-        speeds = [trip.get('avg_speed', 0) * 3.6 for trip in new_trips if trip.get('avg_speed', 0) > 0]  # Convert m/s to km/h
         distances = [trip.get('distance', 0) / 1000 for trip in new_trips if trip.get('distance', 0) > 0]  # Convert m to km
-        durations = [trip.get('duration', 0) / 60 for trip in new_trips if trip.get('duration', 0) > 0]  # Convert s to min
         
         # Calculate average nodes per trip
         nodes_per_trip = []
@@ -146,15 +264,28 @@ class StatisticsManager:
             if isinstance(path_nodes, list) and len(path_nodes) > 0:
                 nodes_per_trip.append(len(path_nodes))
         
-        avg_speed = sum(speeds) / len(speeds) if speeds else 0
+        # Calculate averages
         avg_distance = sum(distances) / len(distances) if distances else 0
-        avg_duration = sum(durations) / len(durations) if durations else 0
         avg_nodes_per_trip = sum(nodes_per_trip) / len(nodes_per_trip) if nodes_per_trip else 0
+        
+        # Calculate duration from distance using the current average speed from moving agents
+        # This uses real-time speed data instead of historical trip data
+        avg_duration = 0
+        if avg_distance > 0:
+            # Get current average speed from moving agents
+            current_avg_speed = self._calculate_current_average_speed()
+            
+            if current_avg_speed > 0:
+                # Calculate duration: time = distance / speed
+                avg_speed_ms = current_avg_speed / 3.6  # km/h to m/s
+                avg_distance_m = avg_distance * 1000  # km to m
+                avg_duration_s = avg_distance_m / avg_speed_ms  # seconds
+                avg_duration = avg_duration_s / 60  # Convert to minutes
         
         # Update the counter for next time
         self.last_plot_update_trip_count = current_trip_count
         
-        return avg_speed, avg_distance, avg_duration, avg_nodes_per_trip, current_trip_count
+        return avg_distance, avg_duration, avg_nodes_per_trip, current_trip_count
 
     def update_plots(self):
         """Update all real-time plots"""
@@ -185,7 +316,7 @@ class StatisticsManager:
             # Plot 3: Average speed vs time
             self.main_window.stats_axes[2].clear()
             self.main_window.stats_axes[2].plot(times, list(self.stats_history['avg_speed']), 'g-', linewidth=1.5, marker='o', markersize=2)
-            self.main_window.stats_axes[2].set_title('Average Speed vs Time (Since Last Update)', fontsize=10)
+            self.main_window.stats_axes[2].set_title('Average Speed of Moving Agents vs Time', fontsize=10)
             self.main_window.stats_axes[2].set_ylabel('Average Speed (km/h)', fontsize=8)
             self.main_window.stats_axes[2].grid(True, alpha=0.3)
             self.main_window.stats_axes[2].tick_params(labelsize=8)

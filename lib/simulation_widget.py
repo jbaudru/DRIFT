@@ -1777,46 +1777,40 @@ class SimulationWidget(QWidget):
         mid_x = (screen_x1 + screen_x2) / 2
         mid_y = (screen_y1 + screen_y2) / 2
         
-                # Determine what to display as label - use second element, then first, then u-v
+        # Determine what to display as label - prioritize: name > length > osmid
         label_text = ""
         if hasattr(data, 'get') and isinstance(data, dict):
-            if data:  # Check if data dictionary is not empty
-                # Try to get the second element first
-                data_items = list(data.items())
-                
-                if len(data_items) >= 2:
-                    # Use second element if available
-                    second_key, second_value = data_items[1]
-                    
-                    # Format the second attribute value appropriately
-                    if isinstance(second_value, (int, float)):
-                        if second_key == 'length' and second_value > 1000:
-                            # Special formatting for length values
-                            length_km = second_value / 1000
-                            label_text = f"{length_km:.1f}km"
-                        else:
-                            label_text = f"{second_value:.1f}"
-                    else:
-                        # For string or other types, truncate if too long
-                        label_text = str(second_value)[:25] + "..."
-                
-                elif len(data_items) >= 1:
-                    # Fall back to first element if only one element exists
-                    first_key, first_value = data_items[0]
-                    
-                    # Format the first attribute value appropriately
-                    if isinstance(first_value, (int, float)):
-                        if first_key == 'length' and first_value > 1000:
-                            # Special formatting for length values
-                            length_km = first_value / 1000
-                            label_text = f"{length_km:.1f}km"
-                        else:
-                            label_text = f"{first_value:.1f}"
-                    else:
-                        # For string or other types, truncate if too long
-                        label_text = str(first_value)[:25] + "..."
+            # First priority: Try to get the 'name' attribute
+            if 'name' in data and data['name']:
+                name_value = data['name']
+                if isinstance(name_value, str):
+                    # Truncate long street names
+                    label_text = name_value[:25] + ("..." if len(name_value) > 25 else "")
+                elif isinstance(name_value, list) and name_value:
+                    # If name is a list, use the first element
+                    label_text = str(name_value[0])[:25] + ("..." if len(str(name_value[0])) > 25 else "")
+                else:
+                    label_text = str(name_value)[:25] + ("..." if len(str(name_value)) > 25 else "")
+            
+            # Second priority: Try to get the 'length' attribute
+            elif 'length' in data and data['length'] is not None:
+                length_value = data['length']
+                if length_value > 1000:
+                    length_km = length_value / 1000
+                    label_text = f"{length_km:.1f}km"
+                else:
+                    label_text = f"{length_value:.1f}m"
+            
+            # Third priority: Use 'osmid' as fallback
+            elif 'osmid' in data and data['osmid'] is not None:
+                osmid_value = data['osmid']
+                if isinstance(osmid_value, list):
+                    # If osmid is a list, join them or use first one
+                    label_text = str(osmid_value[0]) if osmid_value else ""
+                else:
+                    label_text = str(osmid_value)
         
-        # Fallback to edge endpoints if no data available
+        # Final fallback to edge endpoints if no data available
         if not label_text:
             label_text = f"{u}-{v}"
         

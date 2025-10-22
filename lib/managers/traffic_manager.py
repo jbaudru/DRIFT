@@ -47,18 +47,34 @@ class TrafficManager:
                 speed_kph = SIMULATION.DEFAULT_SPEED_KPH
                 length_m = SIMULATION.DEFAULT_EDGE_LENGTH
             
+            # Check for street_count to adjust capacity based on number of roads
+            # street_count represents total roads at intersection (bidirectional)
+            # For directed edges, assume half are in this direction
+            street_count_multiplier = 1.0
+            if 'street_count' in data:
+                try:
+                    street_count = int(data['street_count'])
+                    # For a directed edge, assume roughly half of streets go in this direction
+                    # street_count of 4 means 2 roads per direction
+                    street_count_multiplier = max(1.0, street_count / 2.0)
+                except (TypeError, ValueError):
+                    street_count_multiplier = 1.0
+            
             # Theoretical capacity using highway capacity manual principles
-            # Base capacity per lane: ~2000 vehicles/hour for urban roads
-            base_capacity_per_lane = 2000 if speed_kph >= 50 else 1500
-            theoretical_capacity = int(lanes * base_capacity_per_lane)
+            # Reduced capacity for simulation with ~1000 agents to create realistic congestion
+            # Base capacity per lane: adjusted for simulation scale
+            # TODO: Refine based on speed and road type if available -> Pass as a user setting
+            base_capacity_per_lane = 50 if speed_kph >= 50 else 30
+            theoretical_capacity = int(lanes * base_capacity_per_lane * street_count_multiplier)
             
             # Adjust for road length (longer roads can hold more vehicles)
             # Assume average vehicle length + following distance = 7.5m
             vehicle_space = 7.5
-            max_vehicles_on_road = max(1, int(length_m / vehicle_space))
+            max_vehicles_on_road = max(1, int(length_m / vehicle_space * street_count_multiplier))
             
             # Final capacity is minimum of flow capacity and storage capacity
-            self.edge_capacities[(u, v, key)] = min(theoretical_capacity, max_vehicles_on_road * 4)
+            # Reduced multiplier from 4 to 1.5 for more realistic congestion
+            self.edge_capacities[(u, v, key)] = min(theoretical_capacity, int(max_vehicles_on_road * 1.5))
     
     def register_agent_on_edge(self, agent, u, v, key=0):
         """Register an agent as traveling on a specific edge (only if moving)"""
