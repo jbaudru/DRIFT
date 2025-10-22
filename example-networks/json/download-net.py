@@ -126,7 +126,7 @@ def download_road_network(city_name, country=None, network_type='drive', output_
 # Example usage
 if __name__ == "__main__":
     # Example 1: Download Barcelona road network
-    download_road_network("Nancy", country="France", network_type='drive')
+    download_road_network("Tournai", country="Belgium", network_type='drive')
     
     # Example 2: Download another city
     # download_road_network("Paris", country="France", network_type='drive')
