@@ -80,6 +80,11 @@ class GravitySelection(SourceTargetSelection):
         self.alpha = alpha if alpha is not None else getattr(self.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)  # Attraction scaling parameter
         self.distance_cutoff = getattr(self.config, 'GRAVITY_DISTANCE_CUTOFF', None)  # Maximum distance to consider (None = no limit)
         
+        # Large graph optimization parameters
+        self.large_graph_threshold = getattr(self.config, 'GRAVITY_LARGE_GRAPH_THRESHOLD', 5000)
+        self.max_distance_samples = getattr(self.config, 'GRAVITY_MAX_DISTANCE_SAMPLES', 10000)
+        self.chunk_size = getattr(self.config, 'GRAVITY_CHUNK_SIZE', 1000)
+        
         # Simplified caching
         self.size_variables = {}
         self.attraction_variables = {}
@@ -87,7 +92,21 @@ class GravitySelection(SourceTargetSelection):
         self._cache_valid = False
         
         # Initialize the model with a progress indicator
-        self._initialize_model(graph)
+        try:
+            self._initialize_model(graph)
+        except Exception as e:
+            print(f"Warning: Gravity model initialization failed ({e}), creating fallback model")
+            # Fallback: create minimal working model, but try to compute attraction variables
+            self._cache_valid = False
+            try:
+                # Try to compute attraction variables even in fallback mode
+                self._calculate_size_attraction_variables(graph)
+                print(f"    ✓ Fallback: Computed attraction variables for {len(self.attraction_variables)} nodes")
+            except Exception as e2:
+                print(f"    Warning: Could not compute attraction variables ({e2}), using uniform values")
+                self.size_variables = {node: 1.0 for node in self.nodes}
+                self.attraction_variables = {node: 1.0 for node in self.nodes}
+            self.distances = {}  # Empty distances will trigger fallback in target selection
     
     @classmethod
     def create_with_progress(cls, graph, config=None, alpha=None, beta=None, progress_callback=None):
@@ -114,6 +133,11 @@ class GravitySelection(SourceTargetSelection):
         instance.alpha = alpha if alpha is not None else getattr(instance.config, 'DEFAULT_GRAVITY_ALPHA', 1.0)
         instance.distance_cutoff = getattr(instance.config, 'GRAVITY_DISTANCE_CUTOFF', None)
         
+        # Large graph optimization parameters
+        instance.large_graph_threshold = getattr(instance.config, 'GRAVITY_LARGE_GRAPH_THRESHOLD', 5000)
+        instance.max_distance_samples = getattr(instance.config, 'GRAVITY_MAX_DISTANCE_SAMPLES', 10000)
+        instance.chunk_size = getattr(instance.config, 'GRAVITY_CHUNK_SIZE', 1000)
+        
         # Initialize containers
         instance.size_variables = {}
         instance.attraction_variables = {}
@@ -121,33 +145,66 @@ class GravitySelection(SourceTargetSelection):
         instance._cache_valid = False
         
         # Initialize with progress callback
-        instance._initialize_model_with_progress(graph, progress_callback)
+        try:
+            instance._initialize_model_with_progress(graph, progress_callback)
+        except Exception as e:
+            print(f"Warning: Gravity model initialization failed ({e}), creating fallback model")
+            # Fallback: create minimal working model, but try to compute attraction variables
+            instance._cache_valid = False
+            try:
+                # Try to compute attraction variables even in fallback mode
+                instance._calculate_size_attraction_variables(graph)
+                print(f"    ✓ Fallback: Computed attraction variables for {len(instance.attraction_variables)} nodes")
+            except Exception as e2:
+                print(f"    Warning: Could not compute attraction variables ({e2}), using uniform values")
+                instance.size_variables = {node: 1.0 for node in instance.nodes}
+                instance.attraction_variables = {node: 1.0 for node in instance.nodes}
+            instance.distances = {}  # Empty distances will trigger fallback in target selection
         
         return instance
     
     def _initialize_model_with_progress(self, graph, progress_callback=None):
         """Initialize model with external progress callback"""
-        if progress_callback:
-            progress_callback("Initializing gravity model...")
+        try:
+            if progress_callback:
+                progress_callback("Initializing gravity model...")
+        except Exception:
+            # If progress callback fails, continue without it
+            progress_callback = None
         
         print("Initializing Voorhees Gravity Model...")
         
         try:
-            # Step 1: Calculate centrality-based variables
-            if progress_callback:
-                progress_callback("Computing node centralities...")
+            # Step 1: Calculate centrality-based variables (this should always succeed)
+            try:
+                if progress_callback:
+                    progress_callback("Computing node centralities...")
+            except Exception:
+                pass
             print("  Step 1/3: Computing node centralities...")
             self._calculate_size_attraction_variables(graph)
+            print(f"    ✓ Computed attraction variables for {len(self.attraction_variables)} nodes")
             
-            # Step 2: Compute distances
-            if progress_callback:
-                progress_callback("Computing distances...")
+            # Step 2: Compute distances (this may fail for very large graphs)
+            try:
+                if progress_callback:
+                    progress_callback("Computing distances...")
+            except Exception:
+                pass
             print("  Step 2/3: Computing distances...")
-            self._compute_distances(graph)
+            try:
+                self._compute_distances(graph)
+                print("    ✓ Distance computation completed")
+            except Exception as e:
+                print(f"    Warning: Distance computation failed ({e}), will use attraction-based fallback")
+                self.distances = {}  # Empty distances will trigger attraction-based selection
             
             # Step 3: Mark as ready
-            if progress_callback:
-                progress_callback("Model ready!")
+            try:
+                if progress_callback:
+                    progress_callback("Model ready!")
+            except Exception:
+                pass
             print("  Step 3/3: Model ready!")
             self._cache_valid = True
             
@@ -155,7 +212,8 @@ class GravitySelection(SourceTargetSelection):
             
         except Exception as e:
             print(f"✗ Error initializing gravity model: {e}")
-            raise
+            # Don't raise - let the fallback mechanism handle it
+            pass
     
     
     def _initialize_model(self, graph):
@@ -166,15 +224,21 @@ class GravitySelection(SourceTargetSelection):
             # Show loading spinner if we're in a GUI context
             self._show_loading("Initializing gravity model...")
             
-            # Step 1: Calculate centrality-based variables
+            # Step 1: Calculate centrality-based variables (this should always succeed)
             print("  Step 1/3: Computing node centralities...")
             self._update_loading_progress("Computing node centralities...", 1, 3)
             self._calculate_size_attraction_variables(graph)
+            print(f"    ✓ Computed attraction variables for {len(self.attraction_variables)} nodes")
             
-            # Step 2: Compute distances
+            # Step 2: Compute distances (this may fail for very large graphs)
             print("  Step 2/3: Computing distances...")
             self._update_loading_progress("Computing distances...", 2, 3)
-            self._compute_distances(graph)
+            try:
+                self._compute_distances(graph)
+                print("    ✓ Distance computation completed")
+            except Exception as e:
+                print(f"    Warning: Distance computation failed ({e}), will use attraction-based fallback")
+                self.distances = {}  # Empty distances will trigger attraction-based selection
             
             # Step 3: Mark as ready
             print("  Step 3/3: Model ready!")
@@ -187,7 +251,8 @@ class GravitySelection(SourceTargetSelection):
         except Exception as e:
             self._hide_loading()
             print(f"✗ Error initializing gravity model: {e}")
-            raise
+            # Don't raise - let the fallback mechanism handle it
+            pass
     
     def _update_loading_progress(self, message, current_step, total_steps):
         """Update loading progress if available"""
@@ -196,14 +261,14 @@ class GravitySelection(SourceTargetSelection):
             app = QApplication.instance()
             if app:
                 for widget in app.topLevelWidgets():
-                    if hasattr(widget, 'simulation_widget') and hasattr(widget.simulation_widget, 'parent'):
+                    if hasattr(widget, 'simulation_widget') and widget.simulation_widget and hasattr(widget.simulation_widget, 'parent'):
                         sim_tab = widget.simulation_widget.parent()
-                        if hasattr(sim_tab, 'loading_spinner') and hasattr(sim_tab.loading_spinner, 'update_text'):
+                        if sim_tab and hasattr(sim_tab, 'loading_spinner') and sim_tab.loading_spinner and hasattr(sim_tab.loading_spinner, 'update_text'):
                             progress_percent = int((current_step / total_steps) * 100)
                             sim_tab.loading_spinner.update_text(f"{message} ({progress_percent}%)")
                             app.processEvents()  # Allow GUI updates
                             return
-                        elif hasattr(widget, 'loading_spinner') and hasattr(widget.loading_spinner, 'update_text'):
+                        elif hasattr(widget, 'loading_spinner') and widget.loading_spinner and hasattr(widget.loading_spinner, 'update_text'):
                             progress_percent = int((current_step / total_steps) * 100)
                             widget.loading_spinner.update_text(f"{message} ({progress_percent}%)")
                             app.processEvents()  # Allow GUI updates
@@ -211,13 +276,14 @@ class GravitySelection(SourceTargetSelection):
                 
                 # Fallback: search all widgets
                 for widget in app.allWidgets():
-                    if hasattr(widget, 'loading_spinner') and hasattr(widget.loading_spinner, 'update_text'):
+                    if hasattr(widget, 'loading_spinner') and widget.loading_spinner and hasattr(widget.loading_spinner, 'update_text'):
                         progress_percent = int((current_step / total_steps) * 100)
                         widget.loading_spinner.update_text(f"{message} ({progress_percent}%)")
                         app.processEvents()  # Allow GUI updates
                         break
-        except:
-            pass
+        except Exception as e:
+            # Silently handle GUI-related errors and continue with console output
+            print(f"    {message} ({int((current_step / total_steps) * 100)}%)")
     
     def _show_loading(self, message):
         """Show loading spinner if available"""
@@ -229,24 +295,24 @@ class GravitySelection(SourceTargetSelection):
                 # Look for main window first
                 main_window = None
                 for widget in app.topLevelWidgets():
-                    if hasattr(widget, 'simulation_widget') and hasattr(widget.simulation_widget, 'parent'):
+                    if hasattr(widget, 'simulation_widget') and widget.simulation_widget and hasattr(widget.simulation_widget, 'parent'):
                         # Found main window
                         main_window = widget
                         break
                 
-                if main_window and hasattr(main_window, 'simulation_widget'):
+                if main_window and hasattr(main_window, 'simulation_widget') and main_window.simulation_widget:
                     # Try to find loading spinner in the simulation widget's parent (simulation tab)
                     sim_tab = main_window.simulation_widget.parent()
-                    if hasattr(sim_tab, 'loading_spinner'):
+                    if sim_tab and hasattr(sim_tab, 'loading_spinner') and sim_tab.loading_spinner and hasattr(sim_tab.loading_spinner, 'show_spinner'):
                         sim_tab.loading_spinner.show_spinner(message)
                         return
-                    elif hasattr(main_window, 'loading_spinner'):
+                    elif hasattr(main_window, 'loading_spinner') and main_window.loading_spinner and hasattr(main_window.loading_spinner, 'show_spinner'):
                         main_window.loading_spinner.show_spinner(message)
                         return
                 
                 # Fallback: search all widgets
                 for widget in app.allWidgets():
-                    if hasattr(widget, 'loading_spinner'):
+                    if hasattr(widget, 'loading_spinner') and widget.loading_spinner and hasattr(widget.loading_spinner, 'show_spinner'):
                         widget.loading_spinner.show_spinner(message)
                         break
         except Exception as e:
@@ -262,27 +328,28 @@ class GravitySelection(SourceTargetSelection):
                 # Look for main window first
                 main_window = None
                 for widget in app.topLevelWidgets():
-                    if hasattr(widget, 'simulation_widget') and hasattr(widget.simulation_widget, 'parent'):
+                    if hasattr(widget, 'simulation_widget') and widget.simulation_widget and hasattr(widget.simulation_widget, 'parent'):
                         # Found main window
                         main_window = widget
                         break
                 
-                if main_window and hasattr(main_window, 'simulation_widget'):
+                if main_window and hasattr(main_window, 'simulation_widget') and main_window.simulation_widget:
                     # Try to find loading spinner in the simulation widget's parent (simulation tab)
                     sim_tab = main_window.simulation_widget.parent()
-                    if hasattr(sim_tab, 'loading_spinner'):
+                    if sim_tab and hasattr(sim_tab, 'loading_spinner') and sim_tab.loading_spinner and hasattr(sim_tab.loading_spinner, 'hide_spinner'):
                         sim_tab.loading_spinner.hide_spinner()
                         return
-                    elif hasattr(main_window, 'loading_spinner'):
+                    elif hasattr(main_window, 'loading_spinner') and main_window.loading_spinner and hasattr(main_window.loading_spinner, 'hide_spinner'):
                         main_window.loading_spinner.hide_spinner()
                         return
                 
                 # Fallback: search all widgets
                 for widget in app.allWidgets():
-                    if hasattr(widget, 'loading_spinner'):
+                    if hasattr(widget, 'loading_spinner') and widget.loading_spinner and hasattr(widget.loading_spinner, 'hide_spinner'):
                         widget.loading_spinner.hide_spinner()
                         break
-        except:
+        except Exception as e:
+            # Silently handle GUI-related errors
             pass
     
     def _calculate_size_attraction_variables(self, graph):
@@ -303,13 +370,17 @@ class GravitySelection(SourceTargetSelection):
             self.attraction_variables[node] = base_value + degree_score * self.alpha
     
     def _compute_distances(self, graph):
-        """Compute distances between nodes"""
+        """Compute distances between nodes with optimizations for large graphs"""
         node_count = len(self.nodes)
         
-        if node_count > 2000:
-            # For large graphs, use Euclidean approximation
-            print(f"    Large graph ({node_count} nodes), using Euclidean distances...")
-            self._compute_euclidean_distances_simple(graph)
+        if node_count > self.large_graph_threshold:
+            # For very large graphs, use sampling-based approach
+            print(f"    Very large graph ({node_count} nodes), using optimized sampling...")
+            self._compute_sampled_distances(graph)
+        elif node_count > 2000:
+            # For large graphs, use chunked Euclidean approximation
+            print(f"    Large graph ({node_count} nodes), using chunked Euclidean distances...")
+            self._compute_euclidean_distances_chunked(graph)
         else:
             # For smaller graphs, use shortest path
             print(f"    Computing shortest paths for {node_count} nodes...")
@@ -321,8 +392,8 @@ class GravitySelection(SourceTargetSelection):
                     self.distances[source] = dict(path_lengths[source])
                 print(f"    ✓ Computed {len(self.distances)} distance matrices")
             except (MemoryError, Exception) as e:
-                print(f"    Memory error ({e}), falling back to Euclidean distances...")
-                self._compute_euclidean_distances_simple(graph)
+                print(f"    Memory error ({e}), falling back to chunked Euclidean distances...")
+                self._compute_euclidean_distances_chunked(graph)
     
     def _compute_euclidean_distances_simple(self, graph):
         """Simple Euclidean distance computation without vectorization"""
@@ -362,6 +433,165 @@ class GravitySelection(SourceTargetSelection):
         
         print(f"    ✓ Distance computation complete")
     
+    def _compute_sampled_distances(self, graph):
+        """Optimized distance computation using sampling for very large graphs"""
+        positions = {}
+        
+        # Extract or generate positions
+        for node in self.nodes:
+            if 'pos' in graph.nodes[node]:
+                positions[node] = graph.nodes[node]['pos']
+            else:
+                # Generate consistent positions based on node hash
+                hash_val = hash(str(node))
+                positions[node] = (hash_val % 1000, (hash_val // 1000) % 1000)
+        
+        print(f"    Using sampling approach for {len(self.nodes)} nodes...")
+        
+        # For very large graphs, only compute distances for a sample of nodes
+        # and use nearest neighbor approximation for the rest
+        sample_size = min(self.max_distance_samples, len(self.nodes))
+        sample_nodes = random.sample(self.nodes, sample_size)
+        
+        # Compute distances only for sample nodes (to a subset of targets for memory efficiency)
+        self.distances = {}
+        
+        print(f"    Computing distances for {sample_size} sample nodes...")
+        
+        # Limit target nodes for each sample to reduce memory usage
+        max_targets_per_sample = min(5000, len(self.nodes))
+        
+        with tqdm(total=sample_size, desc="    Sample distance computation", unit="node") as pbar:
+            for source in sample_nodes:
+                self.distances[source] = {}
+                source_pos = positions[source]
+                
+                # For memory efficiency, only compute distances to a subset of nodes
+                if len(self.nodes) > max_targets_per_sample:
+                    # Include all sample nodes plus a random subset of others
+                    target_candidates = list(sample_nodes)
+                    remaining_nodes = [n for n in self.nodes if n not in sample_nodes]
+                    if remaining_nodes:
+                        additional_targets = random.sample(remaining_nodes, 
+                                                         min(max_targets_per_sample - len(sample_nodes), 
+                                                             len(remaining_nodes)))
+                        target_candidates.extend(additional_targets)
+                else:
+                    target_candidates = self.nodes
+                
+                for target in target_candidates:
+                    if source == target:
+                        self.distances[source][target] = 0.1
+                    else:
+                        target_pos = positions[target]
+                        dx = source_pos[0] - target_pos[0]
+                        dy = source_pos[1] - target_pos[1]
+                        dist = (dx*dx + dy*dy)**0.5
+                        self.distances[source][target] = max(dist, 0.1)
+                
+                pbar.update(1)
+        
+        # For non-sample nodes, use nearest sample node distances as approximation
+        non_sample_nodes = [n for n in self.nodes if n not in sample_nodes]
+        
+        if non_sample_nodes:
+            print(f"    Approximating distances for remaining {len(non_sample_nodes)} nodes...")
+            
+            # Process in smaller chunks to avoid memory issues
+            chunk_size = min(1000, len(non_sample_nodes) // 10 + 1)
+            
+            with tqdm(total=len(non_sample_nodes), desc="    Distance approximation", unit="node") as pbar:
+                for i in range(0, len(non_sample_nodes), chunk_size):
+                    chunk = non_sample_nodes[i:i + chunk_size]
+                    
+                    for source in chunk:
+                        try:
+                            # Find nearest sample node
+                            source_pos = positions[source]
+                            min_dist = float('inf')
+                            nearest_sample = None
+                            
+                            for sample_node in sample_nodes:
+                                sample_pos = positions[sample_node]
+                                dist = ((sample_pos[0] - source_pos[0])**2 + 
+                                       (sample_pos[1] - source_pos[1])**2)**0.5
+                                if dist < min_dist:
+                                    min_dist = dist
+                                    nearest_sample = sample_node
+                            
+                            # Create a simplified distance dictionary instead of copying the full one
+                            if nearest_sample and nearest_sample in self.distances:
+                                self.distances[source] = {source: 0.1}
+                                
+                                # Only copy distances to sample nodes and some key targets
+                                sample_distances = self.distances[nearest_sample]
+                                for target, dist in list(sample_distances.items())[:500]:  # Limit to 500 distances
+                                    if target != source:  # Don't overwrite self distance
+                                        self.distances[source][target] = dist
+                            else:
+                                # Fallback: create minimal distance dictionary
+                                self.distances[source] = {source: 0.1}
+                                for target in sample_nodes[:100]:  # Only keep distances to some sample nodes
+                                    target_pos = positions[target]
+                                    dx = source_pos[0] - target_pos[0]
+                                    dy = source_pos[1] - target_pos[1]
+                                    dist = (dx*dx + dy*dy)**0.5
+                                    self.distances[source][target] = max(dist, 0.1)
+                            
+                            pbar.update(1)
+                            
+                        except Exception as e:
+                            # If approximation fails for this node, create minimal distance data
+                            self.distances[source] = {source: 0.1}
+                            pbar.update(1)
+                            continue
+        
+        print(f"    ✓ Sampled distance computation complete")
+    
+    def _compute_euclidean_distances_chunked(self, graph):
+        """Chunked Euclidean distance computation to reduce memory usage"""
+        positions = {}
+        
+        # Extract or generate positions
+        for node in self.nodes:
+            if 'pos' in graph.nodes[node]:
+                positions[node] = graph.nodes[node]['pos']
+            else:
+                # Generate consistent positions based on node hash
+                hash_val = hash(str(node))
+                positions[node] = (hash_val % 1000, (hash_val // 1000) % 1000)
+        
+        print(f"    Computing distances in chunks of {self.chunk_size}...")
+        
+        self.distances = {}
+        node_list = list(positions.keys())
+        num_chunks = (len(node_list) + self.chunk_size - 1) // self.chunk_size
+        
+        with tqdm(total=len(node_list), desc="    Chunked distance computation", unit="node") as pbar:
+            # Process nodes in chunks to manage memory
+            for chunk_idx in range(num_chunks):
+                start_idx = chunk_idx * self.chunk_size
+                end_idx = min(start_idx + self.chunk_size, len(node_list))
+                chunk_nodes = node_list[start_idx:end_idx]
+                
+                for source in chunk_nodes:
+                    self.distances[source] = {}
+                    source_pos = positions[source]
+                    
+                    for target in node_list:
+                        if source == target:
+                            self.distances[source][target] = 0.1
+                        else:
+                            target_pos = positions[target]
+                            dx = source_pos[0] - target_pos[0]
+                            dy = source_pos[1] - target_pos[1]
+                            dist = (dx*dx + dy*dy)**0.5
+                            self.distances[source][target] = max(dist, 0.1)
+                    
+                    pbar.update(1)
+        
+        print(f"    ✓ Chunked distance computation complete")
+    
     def get_source_target(self, agent_type=None, current_location=None, trip_count=0):
         """
         Get source and target using simplified Voorhees gravity model
@@ -397,9 +627,17 @@ class GravitySelection(SourceTargetSelection):
     def _select_gravity_target(self, source):
         """Select target using Voorhees gravity formula: T_ij = S_i * A_j / d_ij^β"""
         if not self.distances or source not in self.distances:
-            # Fallback to random selection
+            # Fallback to weighted random selection based on attraction variables
             available_targets = [n for n in self.nodes if n != source]
-            return random.choice(available_targets) if available_targets else source
+            if not available_targets:
+                return source
+            
+            # Use attraction variables as weights if distances aren't available
+            if self.attraction_variables:
+                target_weights = [self.attraction_variables.get(t, 1.0) for t in available_targets]
+                return random.choices(available_targets, weights=target_weights)[0]
+            else:
+                return random.choice(available_targets)
         
         # Calculate gravity-based probabilities on demand
         target_probs = {}
@@ -410,10 +648,12 @@ class GravitySelection(SourceTargetSelection):
                 continue
                 
             A_j = self.attraction_variables.get(target, 1.0)
-            d_ij = self.distances[source].get(target, float('inf'))
+            d_ij = self.distances[source].get(target, None)
             
-            if d_ij == float('inf') or d_ij <= 0:
-                continue
+            # Handle missing distance data
+            if d_ij is None or d_ij == float('inf') or d_ij <= 0:
+                # Use a default distance based on attraction for missing data
+                d_ij = 1.0 / max(A_j, 0.01)  # Higher attraction = shorter assumed distance
                 
             if self.distance_cutoff and d_ij > self.distance_cutoff:
                 continue
@@ -422,10 +662,17 @@ class GravitySelection(SourceTargetSelection):
             T_ij = (S_i * A_j) / (d_ij ** self.beta)
             target_probs[target] = T_ij
         
-        # If no valid targets found, fallback to random selection
+        # If no valid targets found, fallback to attraction-weighted selection
         if not target_probs:
             available_targets = [n for n in self.nodes if n != source]
-            return random.choice(available_targets) if available_targets else source
+            if not available_targets:
+                return source
+            
+            if self.attraction_variables:
+                target_weights = [self.attraction_variables.get(t, 1.0) for t in available_targets]
+                return random.choices(available_targets, weights=target_weights)[0]
+            else:
+                return random.choice(available_targets)
         
         # Select target based on probabilities
         targets = list(target_probs.keys())
